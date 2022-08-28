@@ -12,13 +12,9 @@ Documentation
    :hidden:
    :caption: Contents:
 
-   readme_link.rst
-   wells.rst
-   getdata.rst
-   noise_removal.rst
-   parameters.rst
-   plotting.rst
-   util.rst
+   README.rst
+   reproduce.rst
+   modules.rst
 
 Indices and tables
 ==================

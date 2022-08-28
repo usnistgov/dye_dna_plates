@@ -20,13 +20,13 @@ sys.path.insert(0, os.path.abspath(os.path.join('..', '..')))
 # -- Project information -----------------------------------------------------
 
 project = 'Dye/DNA Plates'
-copyright = '2022, Robert F. DeJaco'
+copyright = ''
 author = 'Robert F. DeJaco'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = 'v0.6'
+release = 'v0.7'
 
 
 # -- General configuration ---------------------------------------------------
