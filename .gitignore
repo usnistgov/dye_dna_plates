@@ -4,5 +4,8 @@
 # Build files from doc
 doc/build/
 
+# saved versions
+archive/
+
 # python
 __pycache__

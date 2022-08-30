@@ -26,7 +26,7 @@ author = 'Robert F. DeJaco'
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = 'v0.7'
+release = 'v0.8'
 
 
 # -- General configuration ---------------------------------------------------

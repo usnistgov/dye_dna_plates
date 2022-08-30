@@ -3,14 +3,34 @@ import matplotlib.pyplot as plt
 from .util import figure_name_to_abspath
 
 
-def plot_error_F(ax, S, s, T):
-    m, n = S.shape
+def plot_error_F(ax, F_k_tl, F_hat_k_tl, T):
+    """Plot the predicted fluorescence :math:`\\widehat{\\mathbf{F}}_{ijk}^{t\ell}`
+    against :math:`\\mathbf{F}_{ijk}^{t\ell}` 
+    for :math:`i=1,\dots,n` and :math:`j=1,\dots,n`.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes
+        axes to plot on
+    F_kl : np.ndarray
+        Experimentally measured fluorescence :math:`\\mathbf{F}_{k}^{t\ell}`.
+    F_hat_kl : np.ndarray
+        Predicted fluorescence :math:`\\widehat{\\mathbf{F}}_{k}^{t\ell}`.
+    T : np.array
+        Temperatures in K
+
+    Returns
+    -------
+    img
+        image for colorbar
+    """
+    m, n = F_k_tl.shape
     for i_T in range(m-1, 0, -1):
-        img = ax.scatter(S[i_T, :], s[i_T, :], s=2, marker='.', c=np.full(n, fill_value=T[i_T]), 
+        img = ax.scatter(F_k_tl[i_T, :], F_hat_k_tl[i_T, :], s=2, marker='.', c=np.full(n, fill_value=T[i_T]), 
                          vmin = 283., vmax=330.,
                          cmap='coolwarm')
     
-    E = s - S
+    E = F_hat_k_tl - F_k_tl
     
     ax.annotate("$R=%4.f$" % np.sum(E), xy=(0.8, 0.2), xycoords="data", color="purple", fontsize=8)
 

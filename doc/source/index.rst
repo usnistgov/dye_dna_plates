@@ -12,8 +12,6 @@ Documentation
    :hidden:
    :caption: Contents:
 
-   README.rst
-   reproduce.rst
    modules.rst
 
 Indices and tables
