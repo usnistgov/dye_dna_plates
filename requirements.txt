@@ -19,7 +19,7 @@ numpy==1.23.2
 olefile==0.46
 packaging==20.3
 pandas==1.4.3
-Pillow==7.0.0
+Pillow==9.0.1
 pluggy==1.0.0
 py==1.11.0
 Pygments==2.3.1
