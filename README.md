@@ -74,7 +74,12 @@ Having read-in the raw data, we plot it via
 
 which looks like
 
-![Raw Data](out/figure2.png "Figure 2")
+<p align="center"> 
+    <img 
+        src="out/figure2.png" 
+        width="250"
+    />
+</p>
 
 We combine the replicate plates by storing them as a
 `src.get_data.CombinedData` class.
@@ -161,7 +166,12 @@ each combination via
 
 This is Figure 3 in the main text, which looks like
 
-![Least Squares Error](out/figure3.png "Figure 3")
+<p align="center"> 
+    <img 
+        src="out/figure3.png" 
+        width="250"
+    />
+</p>
 
 Subsequently, Equation (22) is solved
 using `src.noise_removal.predictor_corrector`
@@ -209,7 +219,12 @@ The results are plotted via Figure 4
 
 which looks like
 
-![Total Least Squares Error](out/figure4.png "Figure 4")
+<p align="center"> 
+    <img 
+        src="out/figure4.png" 
+        width="250"
+    />
+</p>
 
 and Figure 5,
 
@@ -224,7 +239,12 @@ and Figure 5,
 
 which looks like
 
-![Concentration Error](out/figure5.png "Figure 5")
+<p align="center"> 
+    <img 
+        src="out/figure5.png" 
+        width="250"
+    />
+</p>
 
 
 and Figure 6,
@@ -237,9 +257,14 @@ and Figure 6,
     ... )
     ...
 
-![M_TLS](out/figure6.png "Figure 6")
-
 which looks like
+
+<p align="center"> 
+    <img 
+        src="out/figure6.png" 
+        width="250"
+    />
+</p>
 
 ## Parameter Extraction
 
@@ -264,8 +289,12 @@ we can readily plot the Figure 7 as
 
 which looks like
 
-
-![parameters](out/figure7.png "Figure 7")
+<p align="center"> 
+    <img 
+        src="out/figure7.png" 
+        width="250"
+    />
+</p>
 
 The association constant is calculated as
 
@@ -285,7 +314,12 @@ We plot Figure 8 via
 
 which looks like
 
-![thermo](out/figure8.png "Figure 8")
+<p align="center"> 
+    <img 
+        src="out/figure8.png" 
+        width="250"
+    />
+</p>
 
 
 ## Supplementary Figures
