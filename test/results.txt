@@ -498,7 +498,7 @@ Trying:
 Expecting nothing
 ok
 1 items passed all tests:
-  58 tests in README.md
+  58 tests in REPRODUCEME.md
 58 tests in 1 items.
 58 passed and 0 failed.
 Test passed.
