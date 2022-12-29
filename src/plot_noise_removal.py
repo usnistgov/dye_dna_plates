@@ -195,7 +195,7 @@ def plot_figure6(
 
     plot(T_SS_1, M_SS_1, M_std_SS_1, axes[0], color_r1, r"$\mathbf{D}=1$")
     plot(T_SS_2, M_SS_2, M_std_SS_2, axes[0], color_r2, r"$\mathbf{D}=2$")
-    plot(T_SS_1, 2*M_SS_1, 2*M_std_SS_1, axes[0], "C2", r"$2\mathbf{M}_{j1}^\mathrm{TLS}$")
+    plot(T_SS_1, 2*M_SS_1, 2*M_std_SS_1, axes[0], "C2", r"$2\mathbf{M}_{j,1}^\mathrm{TLS}$")
 
     plot(T_DS_1, M_DS_1, M_std_DS_1, axes[1], color_r1)
     plot(T_DS_2, M_DS_2, M_std_DS_2, axes[1], color_r2)
@@ -213,7 +213,7 @@ def plot_figure6(
         ax.spines['right'].set_visible(False)
         ax.spines['top'].set_visible(False)
     
-    axes[0].set_ylabel(r"$\mathbf{M}_{j\mathbf{D}}^\mathrm{TLS}$", rotation=0, labelpad=12)
+    axes[0].set_ylabel(r"$\mathbf{M}_{j,\mathbf{D}}^\mathrm{TLS}$", rotation=0, labelpad=12)
 
     for ax in axes:
         ax.set_yticks([0., 0.2, 0.4, 0.6, 0.8, 1.0])

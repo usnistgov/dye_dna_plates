@@ -9,4 +9,4 @@ archive/
 
 # python
 __pycache__
-venv/
+venv*

@@ -84,18 +84,20 @@ class RawData:
     Attributes
     ----------
     F : np.ndarray
-        Fluorescence data, :math:`F_k^{t\\ell}` (see Equation 14 of main text)
+        Fluorescence data, :math:`F_d^{t\\ell}` (see Equation 14 of main text)
     C : np.ndarray
         Dye concentrations, :math:`C` (see Equation 13 of main text)
-    D : float
-        DNA concentration, :math:`D_k` in mol/L
+    B : float
+        DNA concentration, :math:`B_d` in mol/L
     t : str
         Type of DNA, :math:`t`, :code:`"SS"` or :code:`"DS"` or :code:`"None"`.
     l : str
         Replicate name, :math:`\\ell` is A, B, or C
+    N : int
+        number of nucleobases per single strand
 
     """
-    def __init__(self, fluorescence_file_name, D_k, t, l,
+    def __init__(self, fluorescence_file_name, B_d, t, l, N,
                        dye_conc_file_name="dye_conc_uM.csv"):
         """Scale the data before interpolating/solving optimization problem.
 
@@ -103,14 +105,16 @@ class RawData:
         ----------
         fluorescence_file_name : str
             name of fluorescence file within data folder
-        D_k : float
-            Total concentration of DNA in mol/L :math:`D_k`
+        B_d : float
+            Total concentration of nucleobases in mol/L :math:`B_d`
         dye_conc_file_name : str, optional
             name of dye concentration file name within data folder, defaults to :code:`"dye_conc_uM.csv"`
         t : str
             Type of DNA, :code:`"SS"`, :code:`"DS"`, or :code:`"None"`.
         l : str
             Replicate name, :math:`\\ell` is A, B, or C
+        N : int
+            number of nucleobases per single strand
 
         """
         df = excel_to_data(os.path.join(PATH_TO_DATA, fluorescence_file_name))
@@ -119,7 +123,8 @@ class RawData:
         self.T = df.index.to_numpy()
         self.C = np.array([c_total[key] for key in df.columns])
         self.F = df.to_numpy()
-        self.D = D_k
+        self.B = B_d
+        self.N = N
 
         self.t = t
         assert ((t == "SS") or (t == "DS") or (t == "None")), "Incorrect input DNA type"
@@ -135,13 +140,15 @@ class CombinedData:
     Attributes
     ----------
     F : np.ndarray
-        Fluorescence data, :math:`\\mathbf{F}_k^t` in Equation (16a)
+        Fluorescence data, :math:`\\mathbf{F}_{\\mathbf{D}}^t` in Equation (16a)
     C : np.ndarray
-        Dye concentrations, :math:`\\mathbf{C}_k^t` in Equation (16a)
+        Dye concentrations, :math:`\\mathbf{C}_{\\mathbf{D}}^t` in Equation (16a)
     D : float
-        DNA concentration, :math:`\\mathbf{D}_k` in Equation (16a)
+        DNA concentration, :math:`\\mathbf{D}` in Equation (16a)
     t : str
         Type of DNA, :math:`t`, :code:`"SS"` or :code:`"DS"`
+    N : int
+        number of nucleobases per single strand, :math:`N`
     M_tls : np.array
         :math:`\\mathbf{M}^\\mathrm{TLS}`, set externally, defaults to np.array([])
     C_hat : np.array
@@ -167,18 +174,21 @@ class CombinedData:
         """
         t = None
         T = None
-        D = None
+        B = None
+        N = None
         F = []
         C = []
         for cls in replicates:
             if t is not None:
                 assert np.max(np.abs(T - cls.T)) < 1e-14, "Inconsistent temperatures"
                 assert t == cls.t, "Cannot combine different DNA types"
-                assert np.abs(D - cls.D) < 1e-14, "Cannot combine different DNA concentrations"
+                assert N == cls.N, "Cannot combine with different DNA lengths"
+                assert np.abs(B - cls.B) < 1e-14, "Cannot combine different DNA concentrations"
             else:
                 t = cls.t
-                D = cls.D
+                B = cls.B
                 T = cls.T[:]
+                N = cls.N
 
             F.append(cls.F)
             C.append(cls.C)
@@ -186,7 +196,8 @@ class CombinedData:
         self.F = np.hstack(F) / F_REF
         self.C = np.hstack(C) / C_REF
         self.t = t
-        self.D = D / C_REF
+        self.N = N
+        self.D = B / C_REF / self.N
         self.T = T
 
         # default params to be changed upon solution of (22)
@@ -222,8 +233,3 @@ class CombinedData:
         self.F = self.F[i_T:, :]
         self.T = self.T[i_T:]
 
-
-
-pluto_plateA_rot = RawData(fluorescence_file_name="6-2022_intercalate-pluto-inter_PlateA_Rot_Pluto_6-14-22_data.xls",
-                        D_k=2e-6, t="SS", l="A",
-                        dye_conc_file_name="dye_conc_uM_rotated.csv")

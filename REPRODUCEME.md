@@ -15,39 +15,43 @@ each replicate plate
 possessing single-stranded DNA with $D_k=1\times10^{-6}$ mol/L is
 input into the following structures
 
-    >>> SS_A_1 = RawData(fluorescence_file_name="ssDNA_2-23-2021.xls", D_k=1e-6, t="SS", l="A")
-    >>> SS_B_1 = RawData(fluorescence_file_name="8-2-2021_GC_ssDNA.xls", D_k=1e-6, t="SS", l="B")
-    >>> SS_C_1 = RawData(fluorescence_file_name="1xSS_GC_11-3-2021_data.xls", D_k=1e-6, t="SS", l="C")
+    >>> kwargs = dict(t="SS", B_d=22e-6, N=22)
+    >>> SS_A_1 = RawData(fluorescence_file_name="ssDNA_2-23-2021.xls", l="A", **kwargs)
+    >>> SS_B_1 = RawData(fluorescence_file_name="8-2-2021_GC_ssDNA.xls", l="B", **kwargs)
+    >>> SS_C_1 = RawData(fluorescence_file_name="1xSS_GC_11-3-2021_data.xls", l="C", **kwargs)
 
 The data for 
 each replicate plate 
 possessing single-stranded DNA with $D_k=2\times10^{-6}$ mol/L is
 input into the following structures
 
-    >>> SS_A_2 = RawData(fluorescence_file_name="2x_ssDNA_2-24-2021.xls", D_k=2e-6, t="SS", l="A")
-    >>> SS_B_2 = RawData(fluorescence_file_name="gc_2xssDNA_11-2-2021_data.xls", D_k=2e-6, t="SS", l="B")
+    >>> kwargs = dict(t="SS", B_d=44e-6, N=22)
+    >>> SS_A_2 = RawData(fluorescence_file_name="2x_ssDNA_2-24-2021.xls", l="A", **kwargs)
+    >>> SS_B_2 = RawData(fluorescence_file_name="gc_2xssDNA_11-2-2021_data.xls", l="B", **kwargs)
 
 The data for 
 each replicate plate 
 possessing double-stranded DNA with $D_k=1\times10^{-6}$ mol/L is
 input into the following structures
 
-    >>> DS_A_1 = RawData(fluorescence_file_name="GC_0p5_dsDNA_11-2-2021.xls", D_k=1e-6, t="DS", l="A")
-    >>> DS_B_1 = RawData(fluorescence_file_name="gc_dsDNA_1uM_12-10-2021_data.xls", D_k=1e-6, t="DS", l="B")
+    >>> kwargs = dict(t="DS", B_d=22e-6, N=22)
+    >>> DS_A_1 = RawData(fluorescence_file_name="GC_0p5_dsDNA_11-2-2021.xls", l="A", **kwargs)
+    >>> DS_B_1 = RawData(fluorescence_file_name="gc_dsDNA_1uM_12-10-2021_data.xls", l="B", **kwargs)
 
 The data for 
 each replicate plate 
 possessing double-stranded DNA with $D_k=2\times10^{-6}$ mol/L is
 input into the following structures
 
-    >>> DS_A_2 = RawData(fluorescence_file_name="8-2-2021_GCdsDNA.xls", D_k=2e-6, t="DS", l="A")
-    >>> DS_B_2 = RawData(fluorescence_file_name="gc_dsDNA_2uM_12-9-2021_data.xls", D_k=2e-6, t="DS", l="B")
+    >>> kwargs = dict(t="DS", B_d=44e-6, N=22)
+    >>> DS_A_2 = RawData(fluorescence_file_name="8-2-2021_GCdsDNA.xls", l="A", **kwargs)
+    >>> DS_B_2 = RawData(fluorescence_file_name="gc_dsDNA_2uM_12-9-2021_data.xls", l="B", **kwargs)
 
 The data for the plate 
 without DNA
 is input into the following structure
 
-    >>> A_1 = RawData(fluorescence_file_name="dyeOnly_11-6-2021_data.xls", D_k=0., t="None", l="A")
+    >>> A_1 = RawData(fluorescence_file_name="dyeOnly_11-6-2021_data.xls", B_d=0., t="None", l="A", N=0)
 
 Having read-in the raw data, we plot it via
 

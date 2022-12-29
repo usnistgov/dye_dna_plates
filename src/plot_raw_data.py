@@ -50,14 +50,19 @@ def plot_linemap(
 
 def make_figure_S1():
     """Makes Figure S1."""
-    from src.get_data import pluto_plateA_rot
+
+    pluto_plateA_rot = RawData(
+        fluorescence_file_name="6-2022_intercalate-pluto-inter_PlateA_Rot_Pluto_6-14-22_data.xls",
+        D_k=2e-6, t="SS", l="A",
+        dye_conc_file_name="dye_conc_uM_rotated.csv"
+    )
     fig, ax = plt.subplots(sharex=True, sharey=True, figsize=(3.25, 3.25))
     plot_linemap(pluto_plateA_rot, ax)
 
     label_kwargs = dict(rotation=0, labelpad=12)
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
-    ax.set_ylabel(r"$\dfrac{F_{ijk}^{t\ell}}{10^6}$", **label_kwargs)
+    ax.set_ylabel(r"$\dfrac{F_{ijd}^{t\ell}}{10^6}$", **label_kwargs)
     ax.tick_params(direction='in')
     ax.set_xlabel(concentration_label)
     ax.set_ylim([0., 0.3])
@@ -88,7 +93,7 @@ def make_figure_2(
     DS_B_2: RawData, 
     A_1: RawData):
     """Makes Figure 2"""
-    ylabel = r"$\dfrac{F_{ijk}^{t\ell}}{10^6}$"
+    ylabel = r"$\dfrac{F_{ijd}^{t\ell}}{10^6}$"
 
     # plot heatmaps
     figs, axes = plt.subplots(ncols=3, nrows=4, sharex=True, sharey=True, figsize=(3.25, 5.0))
@@ -158,7 +163,7 @@ def make_figure_2(
     ax_nodna.spines['bottom'].set_color(c)
     A_1.F = A_1.F*1000.
     plot_linemap(A_1, ax_nodna)
-    ylabel = r"$\frac{F_{ijk}^{t\ell}}{10^6}$"
+    ylabel = r"$\frac{F_{ijd}^{t\ell}}{10^6}$"
     ax_nodna.set_ylabel(r"$\dfrac{F_{ij0}^\mathrm{A}}{10^3}$", color=c, 
                         rotation=0, labelpad=0)
 

@@ -75,11 +75,14 @@ def calculate_relative_brightness_err(SS_M1, SS_M2, DS_M1, DS_M2, SS_V_M1, SS_V_
     E_den = Ea*Eb
     return np.sqrt((E_den*E_den*V_numerator + E_num*E_num*V_denominator)/E_den/E_den/E_den/E_den)
 
+
 class Parameters:
     """Stores multiple instances of CombinedData for one DNA type
     
     Attributes
     ----------
+    N : int
+        number of nucleobases, :math:`N`
     M1 : np.array
         :math:`\\mathbf{M}^\\mathrm{TLS}` associated with :math:`\\mathbf{D}=1`
     M2 : np.array
@@ -138,6 +141,9 @@ class Parameters:
 
         self.r = self.M1 / self.M2
         self.dT = self.T[1] - self.T[0]
+
+        self.N = cls1.N
+        assert self.N == cls2.N, "Cannot combine different DNA lengths"
 
     def get_phi_1(self) -> np.array:
         """Get :math:`\\varphi_{1}`, vectorized version of Equation (S6a)
@@ -251,7 +257,6 @@ class Parameters:
         """
         return self.M1 + self.M2 - (2*self.M1 + self.M2)/(2*self.M1 - self.M2)*(self.M1 - self.M2)
 
-    
     def get_f_std(self) -> np.array:
         """Get standard deviation estimate of :math:`\\mathbf{f}`
 
@@ -301,7 +306,7 @@ class Parameters:
 
         """
         K = self.get_K()
-        return -R_kJ_molK * self.T * np.log(K/C_REF)
+        return -R_kJ_molK * self.T * np.log(K/C_REF/self.N)
     
     def get_dh(self) -> np.array:
         """Get differential enthalpy of binding, :math:`\\Delta h` as the vectorized version of Equation (30).
