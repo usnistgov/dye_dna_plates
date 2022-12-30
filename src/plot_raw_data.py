@@ -53,7 +53,7 @@ def make_figure_S1():
 
     pluto_plateA_rot = RawData(
         fluorescence_file_name="6-2022_intercalate-pluto-inter_PlateA_Rot_Pluto_6-14-22_data.xls",
-        D_k=2e-6, t="SS", l="A",
+        B_d=44e-6, t="SS", l="A", N=22,
         dye_conc_file_name="dye_conc_uM_rotated.csv"
     )
     fig, ax = plt.subplots(sharex=True, sharey=True, figsize=(3.25, 3.25))

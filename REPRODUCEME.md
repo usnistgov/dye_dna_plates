@@ -284,17 +284,17 @@ which looks like
 
 The association constant is calculated as
 
-    >>> K_a = DS.get_K()/2/C_REF*1e-6
-    >>> d_K_a = DS.get_K_std()/2/C_REF*1e-6
+    >>> K_a = DS.get_K()/2/C_REF/DS.N*1e-6
+    >>> d_K_a = DS.get_K_std()/2/C_REF/DS.N*1e-6
     >>> "K_a at %3.2f K is %f +/- %f" % (DS.T[-24], K_a[-24], 3.*d_K_a[-24])
-    'K_a at 295.00 K is 0.671648 +/- 0.033107'
+    'K_a at 295.00 K is 0.030529 +/- 0.001505'
 
 We plot Figure 8 via
 
     >>> from src.plot_params import plot_figure8
     >>> plot_figure8(SS, DS)
-    dg_SS at 295.00 K is -32.682584 +/- 0.088140
-    dg_DS at 295.00 K is -34.608172 +/- 0.108761
+    dg_SS at 295.00 K is -25.101401 +/- 0.088140
+    dg_DS at 295.00 K is -27.026988 +/- 0.108761
 
 
 
