@@ -194,6 +194,9 @@ class Parameters:
         return np.sqrt(
             self.V_M2 + self.V_M1/self.r/self.r
         )/self.M1
+    
+    def get_theta_b_all_1(self, n):
+        return n*self.C1[-1]*(2*self.r - 1)/self.N
 
     def get_psi_j1(self, j: int):
         return self.C1*(2*self.r[j] - 1)

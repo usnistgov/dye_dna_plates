@@ -1,4 +1,5 @@
 from .util import figure_name_to_abspath
+from .parameter_extraction import Parameters
 from .get_data import CombinedData
 import numpy as np
 import matplotlib.pyplot as plt
@@ -55,7 +56,7 @@ def plot_figure7(
     fig.savefig(figure_name_to_abspath("figure7.png"), transparent=True, dpi=300)
 
 
-def plot_figure8(SS, DS):
+def plot_figure8(SS: Parameters, DS: Parameters):
     fig, ax = plt.subplots(ncols=1, nrows=1, sharex=True, sharey=True, 
                                          figsize=(3.25, 3.25))
     dg_SS = SS.get_dg()
@@ -152,7 +153,7 @@ def plot_figure_S2(SS_1: CombinedData, SS_2: CombinedData, DS_1: CombinedData, D
     fig.savefig(figure_name_to_abspath("figureS2.png"), transparent=True, dpi=300)
 
 
-def plot_figure_S3(SS, DS):
+def plot_figure_S3(SS: Parameters, DS: Parameters):
     fig, ax = plt.subplots(figsize=(3.25, 3.25))
 
     def plot_bf(T, phi, dphi, color, label):
@@ -179,35 +180,16 @@ def plot_figure_S3(SS, DS):
     fig.savefig(figure_name_to_abspath("figureS3.png"), dpi=300, transparent=True)
 
 
-def plot_figure_S4(SS_data, DS_data):
+def plot_figure_S4(SS_data: Parameters, DS_data: Parameters):
     # plot 
-    fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(5., 5.), sharex=True, sharey=True)
+    fig, ax = plt.subplots(figsize=(5., 5.))
+    ax.plot(SS_data.T, SS_data.get_theta_b_all_1(1.5), label="SS")
+    ax.plot(DS_data.T, DS_data.get_theta_b_all_1(1.5), label="DS")
+    ax.legend(framealpha=0.)
+    ax.set_xlabel("$T_j$ [K]")
+    ax.set_ylabel("$\\theta_{b,j,1}$", rotation=0, labelpad=12)
 
-    for (j, myax) in [(-5, ax[0, 0]), (-25, ax[0, 1]), (-45, ax[1, 0]), (-65, ax[1, 1])]:
-        myax.tick_params(which='both', axis='both', direction='in')
-        myax.errorbar(SS_data.C1, SS_data.get_psi_j1(j), fmt='-', xerr=3*np.sqrt(SS_data.V_C1), 
-                      yerr=3*SS_data.get_std_psi_j1(j), label="SS, $\\mathbf{D}=1$", color='C0')
-        myax.errorbar(SS_data.C2, SS_data.get_psi_j2(j), fmt='-', xerr=3*np.sqrt(SS_data.V_C2), 
-                      yerr=3*SS_data.get_std_psi_j2(j), label="SS, $\\mathbf{D}=2$", color='C1')
-
-        myax.errorbar(DS_data.C1, DS_data.get_psi_j1(j), 
-                      fmt='-', xerr=3*np.sqrt(DS_data.V_C1), 
-                      yerr=3*DS_data.get_std_psi_j1(j), label="DS, $\\mathbf{D}=1$", color='C2')
-        myax.errorbar(DS_data.C2, DS_data.get_psi_j2(j), fmt='-', 
-                      xerr=3*np.sqrt(DS_data.V_C2), 
-                      yerr=3*DS_data.get_std_psi_j2(j), 
-                      label="DS, $\\mathbf{D}=2$", color='C3')
-
-        myax.annotate("$T_j=%3.2f$" % SS_data.T[j], xy=(0.1, 0.8), xycoords='axes fraction')
-        assert np.isclose(SS_data.T[j], DS_data.T[j]), "Different temperatures!"
-        if (j == -5):
-            myax.legend(ncol=2, loc=(0.4, 1.), edgecolor='None', facecolor='None')
-
-    ax[1, 0].set_xlabel("$\\widehat{\\mathbf{C}}_i$")
-    ax[1, 1].set_xlabel("$\\widehat{\\mathbf{C}}_i$")
-    ax[0, 0].set_ylabel("$\\psi_{ij\\mathbf{D}}$", rotation=0, labelpad=10)
-    ax[1, 0].set_ylabel("$\\psi_{ij\\mathbf{D}}$", rotation=0, labelpad=10)
-    fig.subplots_adjust(right=0.98, bottom=0.10)
+    fig.subplots_adjust(right=0.98, bottom=0.10, left=0.15, top=0.99)
     fig.savefig(figure_name_to_abspath("figureS4.png"), dpi=300, transparent=True)
 
 
