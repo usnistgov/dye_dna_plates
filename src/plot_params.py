@@ -68,7 +68,8 @@ def plot_figure8(SS, DS):
     ax.fill_between(SS.T, dg_SS - 3.*dg_std_SS, dg_SS + 3.*dg_std_SS, color='C0', alpha=0.3, clip_on=False)
 
     ax.plot(
-        SS.T[1:-1], dh_SS, '.', color='C1', mfc='None', label="$\\Delta h_j$,SS", clip_on=True ## NB!
+        SS.T[1:-1], dh_SS, 'x', color='black', markersize=4.,
+        mfc='None', label="$\\Delta h_j$,SS", clip_on=True ## NB!
     )
     # axes.fill_between(
     #     SS.T[1:-1], dh_SS - dh_std_SS, dh_SS + dh_std_SS, color='C1', alpha=0.3, clip_on=True ## NB!
