@@ -92,11 +92,15 @@ The data for double-stranded DNA at $\mathbf{D}=2$ is
 Having combined the data, we calculate $F_\mathrm{min}$ via
 
     >>> F_min = 0
+    >>> F_min_sum = 0
+    >>> n_min_avg = 0
     >>> from src.get_data import C_REF, F_REF
     >>> for dataset in (SS_1, SS_2, DS_1, DS_2):
     ...     wells = dataset.C*C_REF <= 0.5e-6
     ...     "Num wells <= 0.5e-6 mol/L for %s, %i is %d" % (dataset.t, int(dataset.D), len(dataset.C[wells]))
-    ...     max_t_D = dataset.F[-1, wells].max()*F_REF
+    ...     max_t_D = dataset.F[:, wells].max()*F_REF
+    ...     n_min_avg += len(dataset.C[wells])*len(dataset.T)
+    ...     F_min_sum += dataset.F[:, wells].sum()*F_REF
     ...     if max_t_D > F_min:
     ...         F_min = max_t_D
     ...
@@ -104,12 +108,18 @@ Having combined the data, we calculate $F_\mathrm{min}$ via
     'Num wells <= 0.5e-6 mol/L for SS, 2 is 24'
     'Num wells <= 0.5e-6 mol/L for DS, 1 is 24'
     'Num wells <= 0.5e-6 mol/L for DS, 2 is 24'
+    >>> F_min_avg = F_min_sum / n_min_avg
 
 
 The value for $F_\mathrm{min}$ is
 
     >>> F_min
     231432.0
+
+while the average fluorescence for low dye concentrations is
+
+    >>> F_min_avg
+    27433.101518784973
 
 The subsets of the data are made via
 
@@ -310,22 +320,26 @@ which looks like
 
 ## Supplementary Figures
 
-Figure S1 is made via
+Figure S1 and S2 are made via
 
-    >>> from src.plot_raw_data import make_figure_S1
+    >>> from src.plot_raw_data import make_figure_S1, make_figure_S2
     >>> make_figure_S1()
+    >>> make_figure_S2()
+    Maximum change from 6/15 to 6/16: 32841
+    Minimum change from 6/15 to 6/16: -4525
+    Average change from 6/15 to 6/16: 4085
 
-Figures S2, S3, S4 are made via
 
-    >>> from src.plot_params import plot_figure7, plot_figure8, plot_figure_S2, plot_figure_S3, plot_figure_S4, plot_figure_S5
-    >>> plot_figure_S2(SS_1, SS_2, DS_1, DS_2)
-    >>> plot_figure_S3(SS, DS)
+Figure S3, S4, S5, and S6 are made via
+
+    >>> from src.plot_params import plot_figure_S3, plot_figure_S4, \
+    ...     plot_figure_S5, plot_figure_S6
+    >>> plot_figure_S3(SS_1, SS_2, DS_1, DS_2)
     >>> plot_figure_S4(SS, DS)
-
-Figure S5 is made via
-
-    >>> from src.parameter_extraction import calculate_relative_brightness, calculate_relative_brightness_err
+    >>> plot_figure_S5(SS, DS)
+    >>> from src.parameter_extraction import calculate_relative_brightness, \
+    ...     calculate_relative_brightness_err 
     >>> rb = calculate_relative_brightness(SS.get_f(), DS.get_f())
     >>> d_rb = calculate_relative_brightness_err(SS.M1, SS.M2, DS.M1, DS.M2,
     ...     SS.V_M1, SS.V_M2, DS.V_M1, DS.V_M2)
-    >>> plot_figure_S5(SS.T, rb, d_rb)
+    >>> plot_figure_S6(SS.T, rb, d_rb)

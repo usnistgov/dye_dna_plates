@@ -295,6 +295,14 @@ Trying:
 Expecting nothing
 ok
 Trying:
+    F_min_sum = 0
+Expecting nothing
+ok
+Trying:
+    n_min_avg = 0
+Expecting nothing
+ok
+Trying:
     from src.get_data import C_REF, F_REF
 Expecting nothing
 ok
@@ -302,7 +310,9 @@ Trying:
     for dataset in (SS_1, SS_2, DS_1, DS_2):
         wells = dataset.C*C_REF <= 0.5e-6
         "Num wells <= 0.5e-6 mol/L for %s, %i is %d" % (dataset.t, int(dataset.D), len(dataset.C[wells]))
-        max_t_D = dataset.F[-1, wells].max()*F_REF
+        max_t_D = dataset.F[:, wells].max()*F_REF
+        n_min_avg += len(dataset.C[wells])*len(dataset.T)
+        F_min_sum += dataset.F[:, wells].sum()*F_REF
         if max_t_D > F_min:
             F_min = max_t_D
 Expecting:
@@ -312,9 +322,18 @@ Expecting:
     'Num wells <= 0.5e-6 mol/L for DS, 2 is 24'
 ok
 Trying:
+    F_min_avg = F_min_sum / n_min_avg
+Expecting nothing
+ok
+Trying:
     F_min
 Expecting:
     231432.0
+ok
+Trying:
+    F_min_avg
+Expecting:
+    27433.101518784973
 ok
 Trying:
     for dataset in (SS_1, SS_2, DS_1, DS_2):
@@ -473,7 +492,7 @@ Expecting:
     dg_DS at 295.00 K is -27.026988 +/- 0.108761
 ok
 Trying:
-    from src.plot_raw_data import make_figure_S1
+    from src.plot_raw_data import make_figure_S1, make_figure_S2
 Expecting nothing
 ok
 Trying:
@@ -481,15 +500,19 @@ Trying:
 Expecting nothing
 ok
 Trying:
-    from src.plot_params import plot_figure7, plot_figure8, plot_figure_S2, plot_figure_S3, plot_figure_S4, plot_figure_S5
+    make_figure_S2()
+Expecting:
+    Maximum change from 6/15 to 6/16: 32841
+    Minimum change from 6/15 to 6/16: -4525
+    Average change from 6/15 to 6/16: 4085
+ok
+Trying:
+    from src.plot_params import plot_figure_S3, plot_figure_S4, \
+        plot_figure_S5, plot_figure_S6
 Expecting nothing
 ok
 Trying:
-    plot_figure_S2(SS_1, SS_2, DS_1, DS_2)
-Expecting nothing
-ok
-Trying:
-    plot_figure_S3(SS, DS)
+    plot_figure_S3(SS_1, SS_2, DS_1, DS_2)
 Expecting nothing
 ok
 Trying:
@@ -497,7 +520,12 @@ Trying:
 Expecting nothing
 ok
 Trying:
-    from src.parameter_extraction import calculate_relative_brightness, calculate_relative_brightness_err
+    plot_figure_S5(SS, DS)
+Expecting nothing
+ok
+Trying:
+    from src.parameter_extraction import calculate_relative_brightness, \
+        calculate_relative_brightness_err 
 Expecting nothing
 ok
 Trying:
@@ -510,11 +538,11 @@ Trying:
 Expecting nothing
 ok
 Trying:
-    plot_figure_S5(SS.T, rb, d_rb)
+    plot_figure_S6(SS.T, rb, d_rb)
 Expecting nothing
 ok
 1 items passed all tests:
-  62 tests in REPRODUCEME.md
-62 tests in 1 items.
-62 passed and 0 failed.
+  67 tests in REPRODUCEME.md
+67 tests in 1 items.
+67 passed and 0 failed.
 Test passed.

@@ -80,6 +80,63 @@ def make_figure_S1():
     fig.subplots_adjust(bottom=0.18, left=0.2, right=0.99, top=0.98, wspace=0.01, hspace=0.01)
     fig.savefig(figure_name_to_abspath("figureS1.png"), transparent=True, dpi=300)
 
+def make_figure_S2():
+    """Makes Figure SX."""
+    import os
+    import numpy as np
+
+    kwargs = dict(B_d=1e-6, t="SS", l="A", N=22)
+    base_path = os.path.join("6-2022_intercalate", "Pluto")
+    plateB_6_15 = RawData(
+        fluorescence_file_name=os.path.join(base_path, "inter_PlateB_Pluto_6-15-22_data.xls"),  
+        **kwargs
+    )
+    plateB_6_16 = RawData(
+        fluorescence_file_name=os.path.join(base_path, "inter_PlateB_Pluto_6-16-22_data.xls"), 
+        **kwargs
+    )
+    delta_f = RawData(
+        fluorescence_file_name=os.path.join(base_path, "inter_PlateB_Pluto_6-15-22_data.xls"), 
+        **kwargs
+    )
+
+    fig, ax = plt.subplots(ncols=1, nrows=1, sharex=True, sharey=True, figsize=(5., 3.25))
+    # plot_linemap(plateB_6_15, axes[0])
+    # plot_linemap(plateB_6_16, axes[1])
+    delta_f.F[:, :] = plateB_6_15.F - plateB_6_16.F 
+    plot_linemap(delta_f, ax)
+
+
+    df = delta_f.F[:, :-32]
+    print('Maximum change from 6/15 to 6/16: %i' % round(np.max(df)))
+    print('Minimum change from 6/15 to 6/16: %i' % round(np.min(df)))
+    print('Average change from 6/15 to 6/16: %i' % round(np.mean(df)))
+
+    # for ax in (axes[0], axes[1]):
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.tick_params(direction='in')
+    ax.set_xlabel(concentration_label)
+        # ax.set_ylim([0., 0.3])
+    
+    # axes[0].annotate("(a)", xy=(0.05, 0.9), xycoords='axes fraction')
+    # axes[1].annotate("(b)", xy=(0.05, 0.9), xycoords='axes fraction')
+
+    label_kwargs = dict(rotation=0, labelpad=10)
+    ax.set_ylabel(r"$\dfrac{\Delta F_{ijd}^{t\ell}}{10^6}$", **label_kwargs)
+    cax = fig.add_axes([0.94, 0.17, 0.05, 0.75])
+    for d in ('right', 'left', 'bottom', 'top'):
+        cax.spines[d].set_visible(False)
+    cax.tick_params(which="both", axis="both", length=0., labelbottom=False)
+    plot_linemap(plateB_6_15, cax, colorbar=True)
+    cax.set_ylabel("$T_j$ [K]")
+    ticks = plot_linemap(plateB_6_15, cax, get_ticks=True)
+    cax.set_yticks(ticks)
+    cax.set_ylim([ticks[0], ticks[-1]])
+
+    fig.subplots_adjust(bottom=0.17, left=0.18, right=0.82, top=0.97, wspace=0.01, hspace=0.01)
+    fig.savefig(figure_name_to_abspath("figureS2.png"), transparent=True, dpi=300)
+
 
 def make_figure_2(
     SS_A_1: RawData, 
