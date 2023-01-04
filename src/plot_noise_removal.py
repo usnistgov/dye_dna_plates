@@ -140,7 +140,7 @@ def plot_Fhat_vs_F(Fs, Fhats, Ts, fname, sname=r"$\widehat{\mathbf{F}}_{ji}^\mat
 
     figls.text(
         0.84, 0.15,
-        r"$R=\sum_{i,j}$ %s $ - \mathbf{F}_{ji}$" % sname, 
+        r"$R=\sum_{i,j}$ %s $ - \mathbf{F}_{j,i}$" % sname, 
         va='center', ha='center', color="purple"
         )
 
@@ -154,10 +154,10 @@ def plot_Fhat_vs_F(Fs, Fhats, Ts, fname, sname=r"$\widehat{\mathbf{F}}_{ji}^\mat
     axls[0, 0].annotate("(SS,A,1)", **kwargs)
     axls[0, 1].annotate("(SS,B,1)", **kwargs)
     axls[0, 2].annotate("(SS,C,1)", **kwargs)
-    axls[3, 0].set_xlabel(r"$\mathbf{F}_{ji}$")
-    axls[3, 1].set_xlabel(r"$\mathbf{F}_{ji}$")
+    axls[3, 0].set_xlabel(r"$\mathbf{F}_{j,i}$")
+    axls[3, 1].set_xlabel(r"$\mathbf{F}_{j,i}$")
     for ax in (axls[0, 2], ):
-        ax.set_xlabel(r"$\mathbf{F}_{ji}$")
+        ax.set_xlabel(r"$\mathbf{F}_{j,i}$")
         ax.tick_params(labelbottom=True)
 
     for irow in range(4):

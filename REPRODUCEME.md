@@ -125,12 +125,16 @@ The subsets of the data are made via
 
     >>> for dataset in (SS_1, SS_2, DS_1, DS_2):
     ...     dataset.make_subset(F_min/F_REF)
-    ...     "Max temperature for %s, %i is %g K" % (dataset.t, int(dataset.D), dataset.T.max())
+    ...     "%s %i %3.2f %3.2f %5.1f %5.1f" % (
+    ...         dataset.t, int(dataset.D), 
+    ...         dataset.C.min(), dataset.C.max(), 
+    ...         dataset.T.min(), dataset.T.max()
+    ...     )
     ...
-    'Max temperature for SS, 1 is 316.5 K'
-    'Max temperature for SS, 2 is 324.5 K'
-    'Max temperature for DS, 1 is 322 K'
-    'Max temperature for DS, 2 is 329 K'
+    'SS 1 0.51 3.74 283.5 316.5'
+    'SS 2 0.51 3.74 283.5 324.5'
+    'DS 1 0.51 2.49 283.5 322.0'
+    'DS 2 0.51 2.49 283.5 329.0'
 
 ## Noise Removal
 
@@ -157,7 +161,7 @@ each combination via
     ...     tuple(F_hats),
     ...     (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
     ...     "figure3.png", 
-    ...     sname=r"$\widehat{\mathbf{F}}_{ji}^\mathrm{LS}$")
+    ...     sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{LS}$")
     ...
 
 This is Figure 3 in the main text, which looks like
@@ -210,7 +214,7 @@ The results are plotted via Figure 4
     ...     (SS_1.Fhat_tls, SS_2.Fhat_tls, DS_1.Fhat_tls, DS_2.Fhat_tls),
     ...     (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
     ...     "figure4.png", 
-    ...     sname=r"$\widehat{\mathbf{F}}_{ji}^\mathrm{TLS}$")
+    ...     sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{TLS}$")
     ...
 
 which looks like
