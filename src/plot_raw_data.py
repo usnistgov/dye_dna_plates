@@ -59,10 +59,10 @@ def make_figure_S1():
     fig, ax = plt.subplots(sharex=True, sharey=True, figsize=(3.25, 3.25))
     plot_linemap(pluto_plateA_rot, ax)
 
-    label_kwargs = dict(rotation=0, labelpad=12)
+    # label_kwargs = dict(rotation=0, labelpad=12)
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
-    ax.set_ylabel(r"$\dfrac{F_{ijd}^{t\ell}}{10^6}$", **label_kwargs)
+    ax.set_ylabel(r"$F_{i,j,2}^{\mathrm{SS},\alpha}\times 10^{-6}$")  #, **label_kwargs)
     ax.tick_params(direction='in')
     ax.set_xlabel(concentration_label)
     ax.set_ylim([0., 0.3])
@@ -122,8 +122,8 @@ def make_figure_S2():
     # axes[0].annotate("(a)", xy=(0.05, 0.9), xycoords='axes fraction')
     # axes[1].annotate("(b)", xy=(0.05, 0.9), xycoords='axes fraction')
 
-    label_kwargs = dict(rotation=0, labelpad=10)
-    ax.set_ylabel(r"$\dfrac{\Delta F_{ijd}^{t\ell}}{10^6}$", **label_kwargs)
+    # label_kwargs = dict(rotation=0, labelpad=10)
+    ax.set_ylabel(r"$\Delta F_{i,j,2}^{\mathrm{SS}} \times 10^{-6}$") #, **label_kwargs)
     cax = fig.add_axes([0.94, 0.17, 0.05, 0.75])
     for d in ('right', 'left', 'bottom', 'top'):
         cax.spines[d].set_visible(False)
@@ -150,19 +150,18 @@ def make_figure_2(
     DS_B_2: RawData, 
     A_1: RawData):
     """Makes Figure 2"""
-    ylabel = r"$\dfrac{F_{ijd}^{t\ell}}{10^6}$"
 
     # plot heatmaps
     figs, axes = plt.subplots(ncols=3, nrows=4, sharex=True, sharey=True, figsize=(3.25, 5.0))
-    label_kwargs = dict(rotation=0, labelpad=9)
+    label_kwargs = dict(labelpad=0)
 
-    axes[0, 0].annotate("(SS,A,1)", xy=(0.01, 0.9), xycoords='axes fraction')
-    axes[0, 0].set_ylabel(ylabel, **label_kwargs)
-    axes[0, 1].annotate("(SS,B,1)", xy=(0.01, 0.9), xycoords='axes fraction')
-    axes[1, 0].set_ylabel(ylabel, **label_kwargs)
-    axes[0, 2].annotate("(SS,C,1)", xy=(0.01, 0.9), xycoords='axes fraction')
-    axes[2, 0].set_ylabel(ylabel, **label_kwargs)
-    axes[3, 0].set_ylabel(ylabel, **label_kwargs)
+    axes[0, 0].annotate("$\\ell = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[0, 0].set_ylabel(r"$F_{i,j,1}^{\mathrm{SS},\ell}\times 10^{-6}$", **label_kwargs)
+    axes[0, 1].annotate("$\\ell =\\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[1, 0].set_ylabel(r"$F_{i,j,2}^{\mathrm{SS},\ell}\times 10^{-6}$", **label_kwargs)
+    axes[0, 2].annotate("$\\ell = \\mathrm{C}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[2, 0].set_ylabel(r"$F_{i,j,1}^{\mathrm{DS},\ell}\times 10^{-6}$", **label_kwargs)
+    axes[3, 0].set_ylabel(r"$F_{i,j,2}^{\mathrm{DS},\ell}\times 10^{-6}$", **label_kwargs)
 
     for irow in range(axes.shape[0]):
         for icol in range(axes.shape[1]):
@@ -174,9 +173,9 @@ def make_figure_2(
     plot_linemap(SS_B_1, axes[0, 1])
     plot_linemap(SS_C_1, axes[0, 2])
     plot_linemap(SS_A_2, axes[1, 0])
-    axes[1, 0].annotate("(SS,A,2)", xy=(0.01, 0.9), xycoords='axes fraction')
+    axes[1, 0].annotate("$\\ell = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
     plot_linemap(SS_B_2, axes[1, 1])
-    axes[1, 1].annotate("(SS,B,2)", xy=(0.01, 0.9), xycoords='axes fraction')
+    axes[1, 1].annotate("$\\ell = \\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
 
     for i in ((2, 2), (1, 2), (3, 2)):
         for kk in ('left', 'right', 'top', 'bottom'):
@@ -193,36 +192,34 @@ def make_figure_2(
     axes[0, 2].set_xlabel(concentration_label)
 
     plot_linemap(DS_A_1, axes[2, 0])
-    axes[2, 0].annotate("(DS,A,1)", xy=(0.01, 0.9), xycoords='axes fraction')
+    axes[2, 0].annotate("$\\ell = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
     plot_linemap(DS_B_1, axes[2, 1])
-    axes[2, 1].annotate("(DS,B,1)", xy=(0.01, 0.9), xycoords='axes fraction')
+    axes[2, 1].annotate("$\\ell = \\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
     plot_linemap(DS_A_2, axes[3, 0])
-    axes[3, 0].annotate("(DS,A,2)", xy=(0.01, 0.9), xycoords='axes fraction')
+    axes[3, 0].annotate("$\\ell = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
     plot_linemap(DS_B_2, axes[3, 1])
-    axes[3, 1].annotate("(DS,B,2)", xy=(0.01, 0.9), xycoords='axes fraction')
+    axes[3, 1].annotate("$\\ell = \\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
 
     ax_nodna = figs.add_axes([0.8, 0.2, 0.2, 0.2])
     c = 'blueviolet'
     # ax_nodna = axes[3, 2]
-    ax_nodna.annotate("(A,0)", xy=(0.01, 1.02), xycoords='axes fraction', color=c)
+    ax_nodna.annotate("$\\ell = \\mathrm{A}$", xy=(0.05, 1.02), xycoords='axes fraction', color=c)
     # ax_nodna.spines['left'].set_visible(False)
     # plt.setp(ax_nodna.get_xticklabels(), visible=True)
     ax_nodna.tick_params(labelbottom=True)
     # ax = ax_nodna.twinx()
     # ax.tick_params(axis='y', labelcolor=c, color=c)
     ax_nodna.tick_params(axis='both', labelcolor=c, color=c)
-    ax_nodna.spines['right'].set_color(c)
+    ax_nodna.spines['right'].set_visible(False)
     ax_nodna.spines['top'].set_color(c)
     # ax.arrow(2., 11, 1., 0., color=c, length_includes_head=True, 
     #          width=1.e-4, head_width=1, head_length=0.2)
     ax_nodna.spines['bottom'].set_color(c)
     ax_nodna.spines['left'].set_color(c)
-    ax_nodna.spines['bottom'].set_color(c)
     A_1.F = A_1.F*1000.
     plot_linemap(A_1, ax_nodna)
-    ylabel = r"$\frac{F_{ijd}^{t\ell}}{10^6}$"
-    ax_nodna.set_ylabel(r"$\dfrac{F_{ij0}^\mathrm{A}}{10^3}$", color=c, 
-                        rotation=0, labelpad=0)
+    ax_nodna.set_ylabel(r"$F_{i,j,0}^\mathrm{A} \times 10^{-3}$", color=c, labelpad=-8)
+                        
 
     ax_nodna.set_ylim([-5., 5.])
     ax_nodna.set_xlabel(concentration_label, color=c)
