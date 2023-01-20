@@ -2,7 +2,7 @@
 
 The purpose of this code is to enable reproduction
 and facilitate extension of the computational
-results associated with Ref. [1].
+results associated with Ref. [1][].
 
 For step-by-step instructions on reproducing the figures in Ref. [1],
 see [REPRODUCEME.md](REPRODUCEME.md).
@@ -34,8 +34,8 @@ Other forms of documentation can be built using [sphinx](https://www.sphinx-doc.
 
 # Citing This Work
 
-To cite the manuscript, use Ref. [1].
-To cite the software and experimental data, use Ref. [2].
+To cite the manuscript, use Ref. [1][].
+To cite the software and experimental data, use Ref. [2][].
 
 [1]: DeJaco, R. F.; Majikes, J. M.; Liddle, J. A.; Kearsley, A. J. Binding, Brightness, or Noise? Extracting Temperature-dependent Properties of Dye Bound to DNA. *Under Review*, 2023.
 
