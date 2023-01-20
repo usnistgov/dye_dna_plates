@@ -1,6 +1,6 @@
 # Overview
 
-The purpose of this code is to enable reproduction
+The purpose of this software and data is to enable reproduction
 and facilitate extension of the computational
 results associated with Ref. [1].
 
