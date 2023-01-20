@@ -37,6 +37,6 @@ Other forms of documentation can be built using [sphinx](https://www.sphinx-doc.
 To cite the manuscript, use Ref. [1].
 To cite the software and experimental data, use Ref. [2].
 
-[1]: DeJaco, R. F.; Majikes, J. M.; Liddle, J. A.; Kearsley, A. J. Binding, Brightness, or Noise? Extracting Temperature-dependent Properties of Dye Bound to DNA. *Under Review*, 2023.
+.. [1]: DeJaco, R. F.; Majikes, J. M.; Liddle, J. A.; Kearsley, A. J. Binding, Brightness, or Noise? Extracting Temperature-dependent Properties of Dye Bound to DNA. *Under Review*, 2023.
 
-[2]: DeJaco, R. F. Software and Data associated with *Temperature-dependent Thermodynamic and Photophysical Properties of SYTO-13 Dye Bound to DNA*, National Institute of Standards and Technology, 2023, https://doi.org/10.18434/mds2-2762.
+.. [2]: DeJaco, R. F. Software and Data associated with *Temperature-dependent Thermodynamic and Photophysical Properties of SYTO-13 Dye Bound to DNA*, National Institute of Standards and Technology, 2023, https://doi.org/10.18434/mds2-2762.
