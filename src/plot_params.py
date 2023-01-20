@@ -91,6 +91,9 @@ def plot_figure8(SS: Parameters, DS: Parameters):
     ax.plot(
         DS.T[1:-1], dh_DS, '.', color='C3', mfc='None', label="$\\Delta h_j$,DS", clip_on=False,
     )
+    print("dh_DS average over all temperatures is %3.1f +/- %2.1f kJ/mol" % (dh_DS.mean(), dh_DS.std(ddof=1)))
+    Tds_DS = dh_DS - dg_DS[1:-1]
+    print("Tds_DS average over all temperatures is %3.1f +/- %2.1f kJ/mol" % (Tds_DS.mean(), Tds_DS.std(ddof=1)))
 
     ax.legend(
         borderpad=0.1, handlelength=1., labelspacing=0.1,

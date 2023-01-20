@@ -309,6 +309,8 @@ We plot Figure 8 via
     >>> plot_figure8(SS, DS)
     dg_SS at 295.00 K is -25.101401 +/- 0.088140
     dg_DS at 295.00 K is -27.026988 +/- 0.108761
+    dh_DS average over all temperatures is -35.4 +/- 5.3 kJ/mol
+    Tds_DS average over all temperatures is -8.4 +/- 5.2 kJ/mol
 
 
 
