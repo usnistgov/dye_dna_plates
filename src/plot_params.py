@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def plot_figure7(
+def plot_figure8(
     T_SS, f_SS, K_SS, f_std_SS, K_std_SS,
     T_DS, f_DS, K_DS, f_std_DS, K_std_DS):
     ds_color = "tab:purple"
@@ -53,10 +53,10 @@ def plot_figure7(
     ax_f.set_xlabel(r"$T_j$ [K]")
 
     fig.subplots_adjust(left=0.17, hspace=0.06, bottom=0.08)
-    fig.savefig(figure_name_to_abspath("figure7.png"), transparent=True, dpi=300)
+    fig.savefig(figure_name_to_abspath("figure8.png"), transparent=True, dpi=300)
 
 
-def plot_figure8(SS: Parameters, DS: Parameters):
+def plot_figure9(SS: Parameters, DS: Parameters):
     fig, ax = plt.subplots(ncols=1, nrows=1, sharex=True, sharey=True, 
                                          figsize=(3.25, 3.25))
     dg_SS = SS.get_dg()
@@ -117,7 +117,7 @@ def plot_figure8(SS: Parameters, DS: Parameters):
     ax.set_xlim([DS.T.min(), DS.T.max()])
 
     fig.subplots_adjust(right=0.99, left=0.16, bottom=0.13, top=0.98, hspace=0.0, wspace=0.0)
-    fig.savefig(figure_name_to_abspath("figure8.png"), transparent=True, dpi=300)
+    fig.savefig(figure_name_to_abspath("figure9.png"), transparent=True, dpi=300)
 
 
 def plot_figure_S3(SS_1: CombinedData, SS_2: CombinedData, DS_1: CombinedData, DS_2: CombinedData):

@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e06f1af4-9c6d-41fb-9fbb-bc71e6eeab93" name="Changes" comment="" />
+    <list default="true" id="e06f1af4-9c6d-41fb-9fbb-bc71e6eeab93" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/out/figure9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/REPRODUCEME.md" beforeDir="false" afterPath="$PROJECT_DIR$/REPRODUCEME.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/figure3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/figure4.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/figure4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/figure5.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/figure5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/figure6.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/figure6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/figure7.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/figure7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/figure8.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/figure8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plot_noise_removal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/plot_noise_removal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plot_params.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/plot_params.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/results.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/results.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

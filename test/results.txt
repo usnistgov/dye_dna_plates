@@ -376,7 +376,7 @@ Trying:
         (SS_1.F, SS_2.F, DS_1.F, DS_2.F), 
         tuple(F_hats),
         (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
-        "figure3.png", 
+        "figure4.png", 
         sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{LS}$")
 Expecting nothing
 ok
@@ -420,7 +420,7 @@ Trying:
         (SS_1.F, SS_2.F, DS_1.F, DS_2.F),
         (SS_1.Fhat_tls, SS_2.Fhat_tls, DS_1.Fhat_tls, DS_2.Fhat_tls),
         (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
-        "figure4.png", 
+        "figure5.png", 
         sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{TLS}$")
 Expecting nothing
 ok
@@ -433,16 +433,16 @@ Trying:
         (SS_1.C, SS_2.C, DS_1.C, DS_2.C), 
         (SS_1.C_hat, SS_2.C_hat, DS_1.C_hat, DS_2.C_hat), 
         (SS_1.C_std, SS_2.C_std, DS_1.C_std, DS_2.C_std), 
-        "figure5.png"
+        "figure6.png"
     )
 Expecting nothing
 ok
 Trying:
-    from src.plot_noise_removal import plot_figure6
+    from src.plot_noise_removal import plot_figure7
 Expecting nothing
 ok
 Trying:
-    plot_figure6(
+    plot_figure7(
         (SS_1.M_tls, SS_2.M_tls, DS_1.M_tls, DS_2.M_tls),
         (SS_1.M_std, SS_2.M_std, DS_1.M_std, DS_2.M_std),
         (SS_1.T, SS_2.T, DS_1.T, DS_2.T)
@@ -462,11 +462,11 @@ Trying:
 Expecting nothing
 ok
 Trying:
-    from src.plot_params import plot_figure7
+    from src.plot_params import plot_figure8
 Expecting nothing
 ok
 Trying:
-    plot_figure7(
+    plot_figure8(
         SS.T, SS.get_f(), SS.get_K(), SS.get_f_std(), SS.get_K_std(),
         DS.T, DS.get_f(), DS.get_K(), DS.get_f_std(), DS.get_K_std(),
     )
@@ -486,11 +486,11 @@ Expecting:
     'K_a at 295.00 K is 0.030529 +/- 0.001505'
 ok
 Trying:
-    from src.plot_params import plot_figure8
+    from src.plot_params import plot_figure9
 Expecting nothing
 ok
 Trying:
-    plot_figure8(SS, DS)
+    plot_figure9(SS, DS)
 Expecting:
     dg_SS at 295.00 K is -25.101401 +/- 0.088140
     dg_DS at 295.00 K is -27.026988 +/- 0.108761

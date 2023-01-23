@@ -136,7 +136,7 @@ The subsets of the data are made via
     'DS 1 0.51 2.49 283.5 322.0'
     'DS 2 0.51 2.49 283.5 329.0'
 
-## Noise Removal
+## Quantifying Noise and Linearity
 
 First, we import libraries used
 
@@ -160,15 +160,15 @@ each combination via
     ...     (SS_1.F, SS_2.F, DS_1.F, DS_2.F), 
     ...     tuple(F_hats),
     ...     (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
-    ...     "figure3.png", 
+    ...     "figure4.png", 
     ...     sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{LS}$")
     ...
 
-This is Figure 3 in the main text, which looks like
+This is Figure 4 in the main text, which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure3.png" 
+        src="out/figure4.png" 
         width="250"
     />
 </p>
@@ -207,34 +207,14 @@ are calulated
     Total number of iterations was 1928
     Total number of iterations was 3073
 
-The results are plotted via Figure 4
+The results are plotted via Figure 5
 
     >>> plot_Fhat_vs_F(
     ...     (SS_1.F, SS_2.F, DS_1.F, DS_2.F),
     ...     (SS_1.Fhat_tls, SS_2.Fhat_tls, DS_1.Fhat_tls, DS_2.Fhat_tls),
     ...     (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
-    ...     "figure4.png", 
+    ...     "figure5.png", 
     ...     sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{TLS}$")
-    ...
-
-which looks like
-
-<p align="center"> 
-    <img 
-        src="out/figure4.png" 
-        width="250"
-    />
-</p>
-
-and Figure 5,
-
-    >>> from src.plot_noise_removal import plot_Chat_vs_C
-    >>> plot_Chat_vs_C(
-    ...     (SS_1.C, SS_2.C, DS_1.C, DS_2.C), 
-    ...     (SS_1.C_hat, SS_2.C_hat, DS_1.C_hat, DS_2.C_hat), 
-    ...     (SS_1.C_std, SS_2.C_std, DS_1.C_std, DS_2.C_std), 
-    ...     "figure5.png"
-    ... )
     ...
 
 which looks like
@@ -246,11 +226,31 @@ which looks like
     />
 </p>
 
-
 and Figure 6,
 
-    >>> from src.plot_noise_removal import plot_figure6
-    >>> plot_figure6(
+    >>> from src.plot_noise_removal import plot_Chat_vs_C
+    >>> plot_Chat_vs_C(
+    ...     (SS_1.C, SS_2.C, DS_1.C, DS_2.C), 
+    ...     (SS_1.C_hat, SS_2.C_hat, DS_1.C_hat, DS_2.C_hat), 
+    ...     (SS_1.C_std, SS_2.C_std, DS_1.C_std, DS_2.C_std), 
+    ...     "figure6.png"
+    ... )
+    ...
+
+which looks like
+
+<p align="center"> 
+    <img 
+        src="out/figure6.png" 
+        width="250"
+    />
+</p>
+
+
+and Figure 7,
+
+    >>> from src.plot_noise_removal import plot_figure7
+    >>> plot_figure7(
     ...     (SS_1.M_tls, SS_2.M_tls, DS_1.M_tls, DS_2.M_tls),
     ...     (SS_1.M_std, SS_2.M_std, DS_1.M_std, DS_2.M_std),
     ...     (SS_1.T, SS_2.T, DS_1.T, DS_2.T)
@@ -261,7 +261,7 @@ which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure6.png" 
+        src="out/figure7.png" 
         width="250"
     />
 </p>
@@ -278,10 +278,10 @@ into an instance of `src.parameter_extraction.Parameters`
 
 These instances now 
 have methods that perform all parameter calculations;
-we can readily plot the Figure 7 as
+we can readily plot the Figure 8 as
 
-    >>> from src.plot_params import plot_figure7
-    >>> plot_figure7(
+    >>> from src.plot_params import plot_figure8
+    >>> plot_figure8(
     ...     SS.T, SS.get_f(), SS.get_K(), SS.get_f_std(), SS.get_K_std(),
     ...     DS.T, DS.get_f(), DS.get_K(), DS.get_f_std(), DS.get_K_std(),
     ... )
@@ -291,7 +291,7 @@ which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure7.png" 
+        src="out/figure8.png" 
         width="250"
     />
 </p>
@@ -303,10 +303,10 @@ The association constant is calculated as
     >>> "K_a at %3.2f K is %f +/- %f" % (DS.T[-24], K_a[-24], 3.*d_K_a[-24])
     'K_a at 295.00 K is 0.030529 +/- 0.001505'
 
-We plot Figure 8 via
+We plot Figure 9 via
 
-    >>> from src.plot_params import plot_figure8
-    >>> plot_figure8(SS, DS)
+    >>> from src.plot_params import plot_figure9
+    >>> plot_figure9(SS, DS)
     dg_SS at 295.00 K is -25.101401 +/- 0.088140
     dg_DS at 295.00 K is -27.026988 +/- 0.108761
     dh_DS average over all temperatures is -35.4 +/- 5.3 kJ/mol
@@ -318,7 +318,7 @@ which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure8.png" 
+        src="out/figure9.png" 
         width="250"
     />
 </p>

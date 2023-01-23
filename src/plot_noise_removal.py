@@ -178,7 +178,7 @@ def plot_Fhat_vs_F(Fs, Fhats, Ts, fname, sname=r"$\widehat{\mathbf{F}}_{ji}^\mat
     figls.savefig(figure_name_to_abspath(fname), transparent=True, dpi=300)
 
 
-def plot_figure6(
+def plot_figure7(
     M_mean, M_std, T,
     color_r1="C0", color_r2="C1", 
     ):
@@ -221,5 +221,5 @@ def plot_figure6(
         ax.set_ylim([0.1, 1.0])
 
     fig.subplots_adjust(left=0.18, bottom=0.20, right=0.99, top=0.97, hspace=0., wspace=0.03)
-    fig.savefig(figure_name_to_abspath("figure6.png"), transparent=True, dpi=300)
+    fig.savefig(figure_name_to_abspath("figure7.png"), transparent=True, dpi=300)
     plt.close(fig)
