@@ -498,7 +498,7 @@ Expecting:
     Tds_DS average over all temperatures is -8.4 +/- 5.2 kJ/mol
 ok
 Trying:
-    from src.plot_raw_data import make_figure_S1, make_figure_S2
+    from src.plot_raw_data import make_figure_S1, make_figure_S3
 Expecting nothing
 ok
 Trying:
@@ -506,27 +506,23 @@ Trying:
 Expecting nothing
 ok
 Trying:
-    make_figure_S2()
+    make_figure_S3()
 Expecting:
     Maximum change from 6/15 to 6/16: 32841
     Minimum change from 6/15 to 6/16: -4525
     Average change from 6/15 to 6/16: 4085
 ok
 Trying:
-    from src.plot_params import plot_figure_S3, plot_figure_S4, \
-        plot_figure_S5, plot_figure_S6
+    from src.plot_params import plot_figure_S2, plot_figure_S4, \
+        plot_figure_S5
 Expecting nothing
 ok
 Trying:
-    plot_figure_S3(SS_1, SS_2, DS_1, DS_2)
+    plot_figure_S2(SS_1, SS_2, DS_1, DS_2)
 Expecting nothing
 ok
 Trying:
     plot_figure_S4(SS, DS)
-Expecting nothing
-ok
-Trying:
-    plot_figure_S5(SS, DS)
 Expecting nothing
 ok
 Trying:
@@ -544,11 +540,11 @@ Trying:
 Expecting nothing
 ok
 Trying:
-    plot_figure_S6(SS.T, rb, d_rb)
+    plot_figure_S5(SS.T, rb, d_rb)
 Expecting nothing
 ok
 1 items passed all tests:
-  67 tests in REPRODUCEME.md
-67 tests in 1 items.
-67 passed and 0 failed.
+  66 tests in REPRODUCEME.md
+66 tests in 1 items.
+66 passed and 0 failed.
 Test passed.

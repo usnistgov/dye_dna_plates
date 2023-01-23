@@ -120,7 +120,7 @@ def plot_figure9(SS: Parameters, DS: Parameters):
     fig.savefig(figure_name_to_abspath("figure9.png"), transparent=True, dpi=300)
 
 
-def plot_figure_S3(SS_1: CombinedData, SS_2: CombinedData, DS_1: CombinedData, DS_2: CombinedData):
+def plot_figure_S2(SS_1: CombinedData, SS_2: CombinedData, DS_1: CombinedData, DS_2: CombinedData):
     # plot \|F - Fhat\| and \|C - Chat\| vs rho
     from .noise_removal import predictor_corrector
     fig, axes = plt.subplots(ncols=2, nrows=2, sharex=True, figsize=(5., 5.))
@@ -153,37 +153,10 @@ def plot_figure_S3(SS_1: CombinedData, SS_2: CombinedData, DS_1: CombinedData, D
     axes[1, 0].set_xlabel(r"$\rho^2$")
     axes[1, 1].set_xlabel(r"$\rho^2$")
     fig.subplots_adjust(right=0.99, left=0.08, hspace=0.05, wspace=0.2, top=0.99, bottom=0.1)
-    fig.savefig(figure_name_to_abspath("figureS3.png"), transparent=True, dpi=300)
+    fig.savefig(figure_name_to_abspath("figureS2.png"), transparent=True, dpi=300)
 
 
-def plot_figure_S4(SS: Parameters, DS: Parameters):
-    fig, ax = plt.subplots(figsize=(3.25, 3.25))
-
-    def plot_bf(T, phi, dphi, color, label):
-        ax.plot(T, phi, color=color, label=label)
-        ax.fill_between(T, phi - 3*dphi, phi + 3*dphi, color=color, alpha=0.5)
-    
-    plot_bf(SS.T, SS.get_phi_1(), SS.get_std_phi_1(), "C0", "SS, $\\mathbf{D}=1$")
-    plot_bf(SS.T, SS.get_phi_2(), SS.get_std_phi_2(), "C1", "SS, $\\mathbf{D}=2$")
-
-    ax.errorbar(DS.T, DS.get_phi_1(), 
-                                 fmt='d', yerr=3*DS.get_std_phi_1(), 
-                                 color="C0", label="DS, $\\mathbf{D}=1$", mfc='None')
-    ax.errorbar(DS.T, DS.get_phi_2(), fmt='d', 
-                                 yerr=3*DS.get_std_phi_2(), color="C1", label="DS, $\\mathbf{D}=2$", mfc='None')
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-
-    ax.set_xlabel("$T_j$ [K]")
-    ax.set_ylabel("$\\varphi_{j\\mathbf{D}}$", rotation=0., labelpad=12)
-    ax.legend(edgecolor='None', facecolor='None', ncol=2)
-    ax.tick_params(direction='in', which='both')
-    fig.subplots_adjust(left=0.17, right=0.99, top=0.97, bottom=0.14)
-    ax.set_ylim([0., 1.])
-    fig.savefig(figure_name_to_abspath("figureS4.png"), dpi=300, transparent=True)
-
-
-def plot_figure_S5(SS_data: Parameters, DS_data: Parameters):
+def plot_figure_S4(SS_data: Parameters, DS_data: Parameters):
     # plot 
     fig, ax = plt.subplots(figsize=(5., 5.))
     ax.plot(SS_data.T, SS_data.get_theta_b_all_1(1.5), label="SS")
@@ -193,10 +166,10 @@ def plot_figure_S5(SS_data: Parameters, DS_data: Parameters):
     ax.set_ylabel("$\\theta_{b,j,1}$", rotation=0, labelpad=12)
 
     fig.subplots_adjust(right=0.98, bottom=0.10, left=0.15, top=0.99)
-    fig.savefig(figure_name_to_abspath("figureS5.png"), dpi=300, transparent=True)
+    fig.savefig(figure_name_to_abspath("figureS4.png"), dpi=300, transparent=True)
 
 
-def plot_figure_S6(T, rb, d_rb):
+def plot_figure_S5(T, rb, d_rb):
     """Plot figure S5, relative brightness
 
     Parameters
@@ -219,6 +192,6 @@ def plot_figure_S6(T, rb, d_rb):
     axbr.spines['top'].set_visible(False)
     axbr.spines['right'].set_visible(False)
     figbr.savefig(
-        figure_name_to_abspath("figureS6.png"), 
+        figure_name_to_abspath("figureS5.png"), 
         dpi=300, transparent=True
     )

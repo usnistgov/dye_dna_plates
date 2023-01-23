@@ -328,24 +328,23 @@ which looks like
 
 Figure S1 and S2 are made via
 
-    >>> from src.plot_raw_data import make_figure_S1, make_figure_S2
+    >>> from src.plot_raw_data import make_figure_S1, make_figure_S3
     >>> make_figure_S1()
-    >>> make_figure_S2()
+    >>> make_figure_S3()
     Maximum change from 6/15 to 6/16: 32841
     Minimum change from 6/15 to 6/16: -4525
     Average change from 6/15 to 6/16: 4085
 
 
-Figure S3, S4, S5, and S6 are made via
+Figure S2, S4, and S5 are made via
 
-    >>> from src.plot_params import plot_figure_S3, plot_figure_S4, \
-    ...     plot_figure_S5, plot_figure_S6
-    >>> plot_figure_S3(SS_1, SS_2, DS_1, DS_2)
+    >>> from src.plot_params import plot_figure_S2, plot_figure_S4, \
+    ...     plot_figure_S5
+    >>> plot_figure_S2(SS_1, SS_2, DS_1, DS_2)
     >>> plot_figure_S4(SS, DS)
-    >>> plot_figure_S5(SS, DS)
     >>> from src.parameter_extraction import calculate_relative_brightness, \
     ...     calculate_relative_brightness_err 
     >>> rb = calculate_relative_brightness(SS.get_f(), DS.get_f())
     >>> d_rb = calculate_relative_brightness_err(SS.M1, SS.M2, DS.M1, DS.M2,
     ...     SS.V_M1, SS.V_M2, DS.V_M1, DS.V_M2)
-    >>> plot_figure_S6(SS.T, rb, d_rb)
+    >>> plot_figure_S5(SS.T, rb, d_rb)
