@@ -159,8 +159,8 @@ def plot_figure_S2(SS_1: CombinedData, SS_2: CombinedData, DS_1: CombinedData, D
 def plot_figure_S4(SS_data: Parameters, DS_data: Parameters):
     # plot 
     fig, ax = plt.subplots(figsize=(5., 5.))
-    ax.plot(SS_data.T, SS_data.get_theta_b_all_1(1.5), label="SS")
-    ax.plot(DS_data.T, DS_data.get_theta_b_all_1(1.5), label="DS")
+    ax.plot(SS_data.T, SS_data.get_theta_b_all_1(1.5), '-', label="SS")
+    ax.plot(DS_data.T, DS_data.get_theta_b_all_1(1.5), '--', label="DS")
     ax.legend(framealpha=0.)
     ax.set_xlabel("$T_j$ [K]")
     ax.set_ylabel("$\\theta_{b,j,1}$", rotation=0, labelpad=12)
