@@ -24,9 +24,9 @@ copyright = ''
 author = 'Robert F. DeJaco'
 
 # The short X.Y version
-version = 'v1.1.2'
+version = 'v2.0.0'
 # The full version, including alpha/beta/rc tags
-release = 'v1.1.2'
+release = 'v2.0.0'
 
 
 # -- General configuration ---------------------------------------------------
