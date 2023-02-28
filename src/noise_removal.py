@@ -7,7 +7,7 @@ def compute_M_LS(F, C):
     Returns
     -------
     np.array
-        :math:`\\mathbf{M}^\\mathrm{LS}`, see Equation (21)
+        :math:`\\mathbf{M}^\\mathrm{LS}`, see Equation (17)
 
     """
     return F@C/np.inner(C, C)
@@ -54,7 +54,7 @@ def compute_M_plus(F, c_plus):
 
 
 def predictor_corrector(F, C, rho_squared, maxiter=100000, print_iter=True):
-    """Solve Equation (22) with predictor--corrector algorithm
+    """Solve Equation (18) with predictor--corrector algorithm
 
     Parameters
     ----------
@@ -63,7 +63,7 @@ def predictor_corrector(F, C, rho_squared, maxiter=100000, print_iter=True):
     C : np.ndarray
         Dye concentration data :math:`\\mathbf{C}`
     rho_squared : float
-        Weighting factor for concentrations, :math:`\\rho^2` in Equation (22a)
+        Weighting factor for concentrations, :math:`\\rho^2` in Equation (18a)
     maxiter : int, optional
         maximum iterations allowed, by default 100000
     print_iter : bool, optional

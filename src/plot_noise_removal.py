@@ -10,7 +10,7 @@ def plot_error_F(ax, F_k_tl, F_hat_k_tl, T):
 
     Parameters
     ----------
-    ax : matplotlib.axes
+    ax : matplotlib.pyplot.axes
         axes to plot on
     F_kl : np.ndarray
         Experimentally measured fluorescence :math:`\\mathbf{F}_{k}^{t\ell}`.
@@ -45,17 +45,32 @@ def plot_error_F(ax, F_k_tl, F_hat_k_tl, T):
     return img
 
 
-def plot_error_C(ax, X, x, x_std=None, **kwargs):
-    # line, = ax.plot(X, x, '-o', mfc='None', markersize=2, **kwargs)
-    line, = ax.plot(X, x, '-', linewidth=0.5, alpha=1, **kwargs)
+def plot_error_C(ax, C, Chat, Chat_std=None, **kwargs):
+    """Plot Errors in Dye concentration
+
+    Parameters
+    ----------
+    ax : matplotlib.pyplot.axis
+        plots on this axis
+    C : np.array
+        Nominal dye concentrations determined experimentally (dimensionless)
+    Chat : np.array
+        Dye concentrations determined from total least squares
+    Chat_std : np.array
+        Estimate of standard deviations in dye concentrations determined from total least squares
+    kwargs
+        Used to determine color if not provided. Also used when calling :code:`ax.plot`.
+
+    """
+    line, = ax.plot(C, Chat, '-', linewidth=0.5, alpha=1, **kwargs)
     if 'color' not in kwargs.keys():
         kwargs['color'] = line.get_color() 
     if 'label' in kwargs.keys():
         kwargs.pop('label')
-    if x_std is not None:
-        ax.fill_between(X, x + 3*x_std, x - 3*x_std,
+    if Chat_std is not None:
+        ax.fill_between(C, Chat + 3*Chat_std, Chat - 3*Chat_std,
                                  color=kwargs['color'], alpha=0.5)
-    ax.plot(X[::12], x[::12], '*', markersize=4, **kwargs)
+    ax.plot(C[::12], Chat[::12], '*', markersize=4, **kwargs)
     ax.set_xticks([0., 1., 2., 3., 4., 5.])
     ax.set_xticks([0.5, 1.5, 2.5, 3.5, 4.5, 5.5], minor=True)
     ax.set_yticks([0., 1., 2., 3., 4., 5.])
@@ -67,6 +82,24 @@ def plot_error_C(ax, X, x, x_std=None, **kwargs):
 
 
 def plot_Chat_vs_C(Cs, C_hats, C_stds, fname):
+    """Plot comparison between :math:`\\mathbf{C}` and :math:`\\widehat{\\mathbf{C}}`.
+    Used to plot figure 5
+
+    Parameters
+    ----------
+    Cs : tuple of np.arrays
+        each element of the tuple corresponds to :math:`\\mathbf{C}`` for a specific :math:`\\mathbf{D}`
+        and type.
+    C_hats : tuple of np.arrays
+        each element of the tuple corresponds to :math:`\\widehat{\\mathbf{C}}`` for a specific :math:`\\mathbf{D}`
+        and type.
+    C_stds : tuple of np.arrays
+        each element of the tuple corresponds to the estimate for the standard deviation in
+        :math:`\\widehat{\\mathbf{C}}`` for a specific :math:`\\mathbf{D}` and type.
+    fname : str
+        file name to save as figure (relative path).
+
+    """
     figls, axes = plt.subplots(ncols=2, nrows=2, sharex=True, sharey=True, figsize=(3.25, 3.25))
     axls = [axes[0, 0], axes[0, 1], axes[1, 0], axes[1, 1]]
 
@@ -112,7 +145,26 @@ def plot_Chat_vs_C(Cs, C_hats, C_stds, fname):
     figls.savefig(figure_name_to_abspath(fname), transparent=True, dpi=300)
 
 
-def plot_Fhat_vs_F(Fs, Fhats, Ts, fname, sname=r"$\widehat{\mathbf{F}}_{ji}^\mathrm{LS}$"):
+def plot_Fhat_vs_F(Fs, Fhats, Ts, fname, sname=r"\widehat{\mathbf{F}}_{ji}^\mathrm{LS}"):
+    """
+
+    Parameters
+    ----------
+    Fs : tuple of np.array
+        each element of the tuple corresponds to :math:`\\mathbf{F}`` for a specific :math:`\\mathbf{D}`
+        and type.
+    Fhats : tuple of np.array
+        each element of the tuple corresponds to :math:`\\mathbf{F}`` for a specific :math:`\\mathbf{D}`
+        and type.
+    Ts : tuple of np.array
+        each element of the tuple corresponds to the temperatures associated with a specific :math:`\\mathbf{D}`
+        and type.
+    fname : str
+        name of figure to plot (relative path)
+    sname : str
+        name of symbol in latex
+
+    """
     figls, axls = plt.subplots(ncols=3, nrows=4, sharex=True, sharey=True, figsize=(3.25, 5.))
     F_SS_1, F_SS_2, F_DS_1, F_DS_2 = Fs
     Fhat_SS_1, Fhat_SS_2, Fhat_DS_1, Fhat_DS_2 = Fhats
@@ -139,8 +191,8 @@ def plot_Fhat_vs_F(Fs, Fhats, Ts, fname, sname=r"$\widehat{\mathbf{F}}_{ji}^\mat
     cbar = figls.colorbar(img, cax=cax, orientation="vertical", label="$T_j$ [K]")
 
     figls.text(
-        0.84, 0.15,
-        r"$R=\sum_{i,j}$ %s $ - \mathbf{F}_{j,i}$" % sname, 
+        0.83, 0.15,
+        r"$R=\sum_{i,j}%s - \mathbf{F}_{j,i}$" % sname,
         va='center', ha='center', color="purple"
         )
 
@@ -161,7 +213,7 @@ def plot_Fhat_vs_F(Fs, Fhats, Ts, fname, sname=r"$\widehat{\mathbf{F}}_{ji}^\mat
         ax.tick_params(labelbottom=True)
 
     for irow in range(4):
-        axls[irow, 0].set_ylabel(sname, rotation=0)
+        axls[irow, 0].set_ylabel(r"$%s$" % sname, rotation=0)
     axls[1, 0].annotate("(SS,A,2)", **kwargs)
     axls[1, 1].annotate("(SS,B,2)", **kwargs)
     axls[2, 0].annotate("(DS,A,1)", **kwargs)
@@ -180,8 +232,28 @@ def plot_Fhat_vs_F(Fs, Fhats, Ts, fname, sname=r"$\widehat{\mathbf{F}}_{ji}^\mat
 
 def plot_figure7(
     M_mean, M_std, T,
-    color_r1="C0", color_r2="C1", 
+    color_D1="C0", color_D2="C1",
     ):
+    """Plot figure 7
+
+    Parameters
+    ----------
+    M_mean : tuple of np.array
+        each element of the tuple corresponds to :math:`\\mathbf{M}^\\mathrm{TLS}``
+        for a specific :math:`\\mathbf{D}` and type.
+    M_std : tuple of np.array
+        each element of the tuple corresponds to
+        standard deviations in :math:`\\mathbf{M}^\\mathrm{TLS}``
+        for a specific :math:`\\mathbf{D}` and type.
+    T : tuple of np.array
+        each element of the tuple corresponds to the temperatures associated with a specific :math:`\\mathbf{D}`
+        and type.
+    color_D1 : str
+        name of color for data associated with :math:`\\mathbf{D}=1`
+    color_D2
+        name of color for data associated with :math:`\\mathbf{D}=2`
+
+    """
     fig, axes = plt.subplots(ncols=2, nrows=1, sharex=True, sharey=True, figsize=(3.25, 2))
 
     def plot(T_k, M_k, M_std_k, ax, color, label=None):
@@ -193,12 +265,12 @@ def plot_figure7(
     M_std_SS_1, M_std_SS_2, M_std_DS_1, M_std_DS_2 = M_std
     T_SS_1, T_SS_2, T_DS_1, T_DS_2 = T
 
-    plot(T_SS_1, M_SS_1, M_std_SS_1, axes[0], color_r1, r"$\mathbf{D}=1$")
-    plot(T_SS_2, M_SS_2, M_std_SS_2, axes[0], color_r2, r"$\mathbf{D}=2$")
+    plot(T_SS_1, M_SS_1, M_std_SS_1, axes[0], color_D1, r"$\mathbf{D}=1$")
+    plot(T_SS_2, M_SS_2, M_std_SS_2, axes[0], color_D2, r"$\mathbf{D}=2$")
     plot(T_SS_1, 2*M_SS_1, 2*M_std_SS_1, axes[0], "C2", r"$2\mathbf{M}_{j,1}^\mathrm{TLS}$")
 
-    plot(T_DS_1, M_DS_1, M_std_DS_1, axes[1], color_r1)
-    plot(T_DS_2, M_DS_2, M_std_DS_2, axes[1], color_r2)
+    plot(T_DS_1, M_DS_1, M_std_DS_1, axes[1], color_D1)
+    plot(T_DS_2, M_DS_2, M_std_DS_2, axes[1], color_D2)
     plot(T_DS_1, 2*M_DS_1, 2*M_std_DS_1, axes[1], "C2")
 
     axes[0].annotate("SS", xy=(0.5, 0.9), xycoords='axes fraction', ha='center')

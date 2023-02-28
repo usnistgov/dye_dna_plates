@@ -16,7 +16,7 @@ C_REF = 1e-6
 def excel_to_data(f_name: str, channel="GREEN"):
     """
     Convert "Raw Data" sheet of excel file to pandas dataframe.
-    Uses Equation (12) of manuscript 
+    Uses Equation (9) of manuscript
     to calculate temperature associated with each cycle.
 
     Parameters
@@ -84,9 +84,9 @@ class RawData:
     Attributes
     ----------
     F : np.ndarray
-        Fluorescence data, :math:`F_d^{t\\ell}` (see Equation 14 of main text)
+        Fluorescence data, :math:`F_d^{t\\ell}` (see Equation 11 of main text)
     C : np.ndarray
-        Dye concentrations, :math:`C` (see Equation 13 of main text)
+        Dye concentrations, :math:`C` (see Equation 10 of main text)
     B : float
         DNA concentration, :math:`B_d` in mol/L
     t : str

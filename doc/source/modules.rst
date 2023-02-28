@@ -14,8 +14,8 @@ Get Data
 .. automodule:: src.get_data
     :members:
 
-Noise Removal
--------------
+Quantifying Noise and Linearity
+-------------------------------
 
 .. automodule:: src.noise_removal
     :members:
@@ -35,8 +35,8 @@ Raw Data
 .. automodule:: src.plot_raw_data
     :members:
 
-Noise Removal
-.............
+Quantifying Noise and Linearity
+................................
 
 .. automodule:: src.plot_noise_removal
     :members:

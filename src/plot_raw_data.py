@@ -80,8 +80,9 @@ def make_figure_S1():
     fig.subplots_adjust(bottom=0.18, left=0.2, right=0.99, top=0.98, wspace=0.01, hspace=0.01)
     fig.savefig(figure_name_to_abspath("figureS1.pdf"), transparent=True, dpi=300)
 
+
 def make_figure_S3():
-    """Makes Figure SX."""
+    """Makes Figure S3."""
     import os
     import numpy as np
 
@@ -149,7 +150,33 @@ def make_figure_2(
     DS_A_2: RawData, 
     DS_B_2: RawData, 
     A_1: RawData):
-    """Makes Figure 2"""
+    """ Makes figure 2
+
+    Parameters
+    ----------
+    SS_A_1 : RawData
+        Data associated with :math:`(t,\\ell,d)=(SS,A,1)` (see Table 1 of main text)
+    SS_B_1 : RawData
+        Data associated with :math:`(t,\\ell,d)=(SS,B,1)` (see Table 1 of main text)
+    SS_C_1 : RawData
+        Data associated with :math:`(t,\\ell,d)=(SS,C,1)` (see Table 1 of main text)
+    SS_A_2 : RawData
+        Data associated with :math:`(t,\\ell,d)=(SS,A,2)` (see Table 1 of main text)
+    SS_B_2 : RawData
+        Data associated with :math:`(t,\\ell,d)=(SS,B,2)` (see Table 1 of main text)
+    DS_A_1 : RawData
+        Data associated with :math:`(t,\\ell,d)=(DS,A,1)` (see Table 1 of main text)
+    DS_B_1 : RawData
+        Data associated with :math:`(t,\\ell,d)=(DS,B,1)` (see Table 1 of main text)
+    DS_A_2 : RawData
+        Data associated with :math:`(t,\\ell,d)=(DS,A,2)` (see Table 1 of main text)
+    DS_B_2 : RawData
+        Data associated with :math:`(t,\\ell,d)=(DS,B,2)` (see Table 1 of main text)
+    A_1 : RawData
+        Data associated with :math:`(\\ell,d)=(A,1)` (without DNA, see Table 1 of main text)
+
+
+    """
 
     # plot heatmaps
     figs, axes = plt.subplots(ncols=3, nrows=4, sharex=True, sharey=True, figsize=(3.25, 5.0))

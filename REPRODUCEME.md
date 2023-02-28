@@ -12,7 +12,7 @@ and store as an instance of `src.get_data.RawData`.
 
 The data for 
 each replicate plate 
-possessing single-stranded DNA with $D_k=1\times10^{-6}$ mol/L is
+possessing single-stranded DNA with $B_d=22\times10^{-6}$ mol nucleobases/L is
 input into the following structures
 
     >>> kwargs = dict(t="SS", B_d=22e-6, N=22)
@@ -22,7 +22,7 @@ input into the following structures
 
 The data for 
 each replicate plate 
-possessing single-stranded DNA with $D_k=2\times10^{-6}$ mol/L is
+possessing single-stranded DNA with $B_d=44\times10^{-6}$ mol nucleobases/L is
 input into the following structures
 
     >>> kwargs = dict(t="SS", B_d=44e-6, N=22)
@@ -31,7 +31,7 @@ input into the following structures
 
 The data for 
 each replicate plate 
-possessing double-stranded DNA with $D_k=1\times10^{-6}$ mol/L is
+possessing double-stranded DNA with $B_d=22\times10^{-6}$ mol nucleobases/L is
 input into the following structures
 
     >>> kwargs = dict(t="DS", B_d=22e-6, N=22)
@@ -40,7 +40,7 @@ input into the following structures
 
 The data for 
 each replicate plate 
-possessing double-stranded DNA with $D_k=2\times10^{-6}$ mol/L is
+possessing double-stranded DNA with $B_d=44\times10^{-6}$ mol nucleobases/L is
 input into the following structures
 
     >>> kwargs = dict(t="DS", B_d=44e-6, N=22)
@@ -109,6 +109,7 @@ The value for $F_\mathrm{min}$ is
     >>> F_min
     231432.0
 
+(see Section S1.2 in the Supporting Material),
 while the average fluorescence for low dye concentrations is
 
     >>> F_min_avg
@@ -154,7 +155,7 @@ each combination via
     ...     tuple(F_hats),
     ...     (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
     ...     "figure4.pdf", 
-    ...     sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{LS}$")
+    ...     sname=r"\widehat{\mathbf{F}}_{j,i}^\mathrm{LS}")
     ...
 
 This is Figure 4 of the main text, which can be found [here](out/figure4.pdf).
@@ -162,7 +163,7 @@ This is Figure 4 of the main text, which can be found [here](out/figure4.pdf).
 Subsequently, Equation (18) is solved
 using `src.noise_removal.predictor_corrector`
 and $V(\mathbf{M})$ and $V(\mathbf{C})$
-are calulated 
+are calulated (see Section S1.3 in the SM)
 
 
     >>> from src.noise_removal import predictor_corrector
@@ -200,7 +201,7 @@ The results are plotted via Figure 5
     ...     (SS_1.Fhat_tls, SS_2.Fhat_tls, DS_1.Fhat_tls, DS_2.Fhat_tls),
     ...     (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
     ...     "figure5.pdf", 
-    ...     sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{TLS}$")
+    ...     sname=r"\widehat{\mathbf{F}}_{j,i}^\mathrm{TLS}")
     ...
 
 which can be found [here](out/figure5.pdf),
@@ -251,7 +252,6 @@ we can readily plot the Figure 8 as
     ...
 
 which looks like [this](out/figure8.pdf).
-
 The association constant is calculated as
 
     >>> K_a = DS.get_K()/2/C_REF/DS.N*1e-6
@@ -273,22 +273,25 @@ which looks like [this](out/figure9.pdf).
 
 ## Supplementary Figures
 
-Figure S1 and S2 are made via
+Figures [S1](out/figureS1.pdf), [S2](out/figureS2.pdf),  [S3](out/figureS3.pdf), 
+[S4](out/figureS4.pdf), and [S5](out/figureS5.pdf) are made via
 
-    >>> from src.plot_raw_data import make_figure_S1, make_figure_S3
+    >>> from src.plot_raw_data import make_figure_S1
     >>> make_figure_S1()
+
+    >>> from src.plot_params import plot_figure_S2
+    >>> plot_figure_S2(SS_1, SS_2, DS_1, DS_2)
+
+    >>> from src.plot_raw_data import make_figure_S3
     >>> make_figure_S3()
     Maximum change from 6/15 to 6/16: 32841
     Minimum change from 6/15 to 6/16: -4525
     Average change from 6/15 to 6/16: 4085
 
-
-Figure S2, S4, and S5 are made via
-
-    >>> from src.plot_params import plot_figure_S2, plot_figure_S4, \
-    ...     plot_figure_S5
-    >>> plot_figure_S2(SS_1, SS_2, DS_1, DS_2)
+    >>> from src.plot_params import plot_figure_S4
     >>> plot_figure_S4(SS, DS)
+
+    >>> from src.plot_params import plot_figure_S5
     >>> from src.parameter_extraction import calculate_relative_brightness, \
     ...     calculate_relative_brightness_err 
     >>> rb = calculate_relative_brightness(SS.get_f(), DS.get_f())

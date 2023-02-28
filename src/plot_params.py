@@ -8,6 +8,32 @@ import matplotlib.pyplot as plt
 def plot_figure8(
     T_SS, f_SS, K_SS, f_std_SS, K_std_SS,
     T_DS, f_DS, K_DS, f_std_DS, K_std_DS):
+    """Plot figure 8
+
+    Parameters
+    ----------
+    T_SS : np.array
+        temperatures for single-stranded DNA
+    f_SS : np.array
+        molar fluorescence for single-stranded DNA
+    K_SS : np.array
+        partition coefficients for single-stranded DNA
+    f_std_SS : np.array
+        standard deviation in molar fluorescence of single-stranded DNA
+    K_std_SS : np.array
+        standard deviation in partition coefficients for single-stranded DNA
+    T_DS : np.array
+        temperatures for double-stranded DNA
+    f_DS : np.array
+        molar fluorescence for double-stranded dna
+    K_DS : np.array
+        partition coefficients for single-stranded DNA
+    f_std_DS : np.array
+        standard deviation in molar fluorescence of double-stranded DNA
+    K_std_DS : np.array
+        standard deviation in partition coefficients for double-stranded DNA
+
+    """
     ds_color = "tab:purple"
     ss_color = "tab:olive"
 
@@ -57,7 +83,17 @@ def plot_figure8(
 
 
 def plot_figure9(SS: Parameters, DS: Parameters):
-    fig, ax = plt.subplots(ncols=1, nrows=1, sharex=True, sharey=True, 
+    """
+
+    Parameters
+    ----------
+    SS : Parameters
+        object containing all single-stranded DNA input and methods to perform calculations
+    DS : Parameters
+        object containing all single-stranded DNA input and methods to perform calculations
+
+    """
+    fig, ax = plt.subplots(ncols=1, nrows=1, sharex=True, sharey=True,
                                          figsize=(3.25, 3.25))
     dg_SS = SS.get_dg()
     dh_SS = SS.get_dh()
@@ -121,7 +157,20 @@ def plot_figure9(SS: Parameters, DS: Parameters):
 
 
 def plot_figure_S2(SS_1: CombinedData, SS_2: CombinedData, DS_1: CombinedData, DS_2: CombinedData):
-    # plot \|F - Fhat\| and \|C - Chat\| vs rho
+    """Plot figure S2
+
+    Parameters
+    ----------
+    SS_1 : CombinedData
+        object containing all replicate plates for single-stranded DNA with :math:`\\mathbf{D}=1`
+    SS_2 : CombinedData
+        object containing all replicate plates for single-stranded DNA with :math:`\\mathbf{D}=2`
+    DS_1 : CombinedData
+        object containing all replicate plates for double-stranded DNA with :math:`\\mathbf{D}=1`
+    DS_2 : CombinedData
+        object containing all replicate plates for double-stranded DNA with :math:`\\mathbf{D}=2`
+
+    """
     from .noise_removal import predictor_corrector
     fig, axes = plt.subplots(ncols=2, nrows=2, sharex=True, figsize=(5., 5.))
     num_rhos = 10
@@ -157,7 +206,17 @@ def plot_figure_S2(SS_1: CombinedData, SS_2: CombinedData, DS_1: CombinedData, D
 
 
 def plot_figure_S4(SS_data: Parameters, DS_data: Parameters):
-    # plot 
+    """Plot Figure S4
+
+    Parameters
+    ----------
+    SS_data : Parameters
+        parameters class that has method to calculate :math:`\\theta_{b,j,1}` pointwise in :math:`j`
+    DS_data : Parameters
+        parameters class that has method to calculate :math:`\\theta_{b,j,1}` pointwise in :math:`j`
+
+
+    """
     fig, ax = plt.subplots(figsize=(5., 5.))
     ax.plot(SS_data.T, SS_data.get_theta_b_all_1(1.5), '-', label="SS")
     ax.plot(DS_data.T, DS_data.get_theta_b_all_1(1.5), '--', label="DS")

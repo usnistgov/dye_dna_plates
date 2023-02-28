@@ -4,7 +4,7 @@ R_kJ_molK = 8.314 / 1000.
 
 
 def calculate_relative_brightness(f_SS, f_DS):
-    """Calculate relative brightness, Equation (28).
+    """Calculate relative brightness, Equation (24).
 
     Parameters
     ----------
@@ -24,7 +24,7 @@ def calculate_relative_brightness(f_SS, f_DS):
 
 
 def calculate_relative_brightness_err(SS_M1, SS_M2, DS_M1, DS_M2, SS_V_M1, SS_V_M2, DS_V_M1, DS_V_M2) -> np.array:
-    """Estimate error in relative brightness, Equation (28).
+    """Estimate error in relative brightness, Equation (24).
 
     Parameters
     ----------
@@ -145,81 +145,8 @@ class Parameters:
         self.N = cls1.N
         assert self.N == cls2.N, "Cannot combine different DNA lengths"
 
-    def get_phi_1(self) -> np.array:
-        """Get :math:`\\varphi_{1}`, vectorized version of Equation (S6a)
-
-        Returns
-        -------
-        np.array
-            
-        """
-        return 2*self.r - 1
-    
-    def get_std_phi_1(self) -> np.array:
-        """Get estimate of standard deviation in :math:`\\varphi_{1}`
-
-        Returns
-        -------
-        np.array
-
-            .. math::
-                \\frac{2}{\\mathbf{M}_{2j}}\\sqrt{V(\\mathbf{M}_{1j}) + r_j^2V(\\mathbf{M}_{2j})}
-
-        """
-        return 2*np.sqrt(
-            self.V_M1 + self.r*self.r*self.V_M2
-        )/self.M2
-    
-    def get_phi_2(self):
-        """Get :math:`\\varphi_{2}`, vectorized version of Equation (S6b)
-
-        Returns
-        -------
-        np.array
-            
-        """
-        return 2 - 1/self.r
-    
-    def get_std_phi_2(self):
-        """Get estimate of standard deviation in :math:`\\varphi_{2}`
-
-        Returns
-        -------
-        np.array
-
-            .. math::
-                \\frac{1}{\\mathbf{M}_{1j}}\\sqrt{V(\\mathbf{M}_{2j}) + r_j^{-2}V(\\mathbf{M}_{1j})}
-
-        """
-        return np.sqrt(
-            self.V_M2 + self.V_M1/self.r/self.r
-        )/self.M1
-    
-    def get_theta_b_all_1(self, n):
-        return n*self.C1[-1]*(2*self.r - 1)/self.N
-
-    def get_psi_j1(self, j: int):
-        return self.C1*(2*self.r[j] - 1)
-    
-    def get_std_psi_j1(self, j: int):
-        return np.sqrt(
-            (2*self.r[j] - 1)*(2*self.r[j] - 1)*self.V_C1
-            + 4*self.C1*self.C1/self.M2[j]/self.M2[j]*self.V_M1[j]
-            + 4*self.C1*self.C1*self.r[j]*self.r[j]/self.M2[j]/self.M2[j]*self.V_M2[j]
-        )
-    
-    def get_psi_j2(self, j: int):
-        return self.C2*(1 - 1/2/self.r[j])
-    
-    def get_std_psi_j2(self, j: int):
-        return np.sqrt(
-            (1 - 1/2/self.r[j])*(1 - 1/2/self.r[j])*self.V_C2
-            + (self.C2*self.C2/4/self.M1[j]/self.M1[j])*self.V_M2[j]
-            + self.C2*self.C2/self.r[j]/self.r[j]/self.M1[j]/self.M1[j]/4*self.V_M1[j]
-        )
-    
     def get_K(self) -> np.array:
-        """Get :math:`\\mathbf{K}` from vectorized version of Equation (24)
+        """Get :math:`\\mathbf{K}` from vectorized version of Equation (21)
 
         Returns
         -------
@@ -251,7 +178,7 @@ class Parameters:
         return np.sqrt((DM*DM*(4*self.V_M1+ 2*self.V_M2) + DH*DH*(self.V_M1+ self.V_M2))/8/DM/DM/DM/DM)
     
     def get_f(self) -> np.array:
-        """Get :math:`\\mathbf{f}` from vectorized version of Equation (27)
+        """Get :math:`\\mathbf{f}` from vectorized version of Equation (23)
 
         Returns
         -------
@@ -301,7 +228,7 @@ class Parameters:
         )
     
     def get_dg(self) -> np.array:
-        """Get free energy of dye binding, :math:`\\Delta g`, vectorized version of Equation (29).
+        """Get free energy of dye binding, :math:`\\Delta g`, vectorized version of Equation (25).
 
         Returns
         -------
@@ -312,7 +239,7 @@ class Parameters:
         return -R_kJ_molK * self.T * np.log(K/C_REF/self.N)
     
     def get_dh(self) -> np.array:
-        """Get differential enthalpy of binding, :math:`\\Delta h` as the vectorized version of Equation (30).
+        """Get differential enthalpy of binding, :math:`\\Delta h` as the vectorized version of Equation (26).
 
         Returns
         -------
@@ -368,4 +295,14 @@ class Parameters:
             + dhj__M1jm1*dhj__M1jm1*self.V_M1[:-2]
             + dhj__M2jm1*dhj__M2jm1*self.V_M2[:-2]
         )
-        
+
+    def get_theta_b_all_1(self, n):
+        """Returns :math:`\\theta_{b,j,1}` in Equation (S6a) pointwise in :math:`j`
+        The index :math:`b` is the total number of wells.
+
+        Returns
+        -------
+        np.array
+
+        """
+        return n * self.C1[-1] * (2 * self.r - 1) / self.N
