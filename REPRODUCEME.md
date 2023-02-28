@@ -58,10 +58,7 @@ Having read-in the raw data, we plot it via
     >>> from src.plot_raw_data import make_figure_2
     >>> make_figure_2(SS_A_1, SS_B_1, SS_C_1, SS_A_2, SS_B_2, DS_A_1, DS_B_1, DS_A_2, DS_B_2, A_1)
 
-
-<p align="center"> 
-    <iframe src="out/figure2.pdf" style="width:600px; height:500px;" frameborder="0"></iframe>
-</p>
+The output can be found [here](out/figure2.pdf).
 
 We combine the replicate plates by storing them as a
 `src.get_data.CombinedData` class.
@@ -160,16 +157,9 @@ each combination via
     ...     sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{LS}$")
     ...
 
-This is Figure 4 in the main text, which looks like
+This is Figure 4 of the main text, which can be found [here](out/figure4.pdf).
 
-<p align="center"> 
-    <img 
-        src="out/figure4.pdf" 
-        width="250"
-    />
-</p>
-
-Subsequently, Equation (22) is solved
+Subsequently, Equation (18) is solved
 using `src.noise_removal.predictor_corrector`
 and $V(\mathbf{M})$ and $V(\mathbf{C})$
 are calulated 
@@ -213,15 +203,7 @@ The results are plotted via Figure 5
     ...     sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{TLS}$")
     ...
 
-which looks like
-
-<p align="center"> 
-    <img 
-        src="out/figure5.pdf" 
-        width="250"
-    />
-</p>
-
+which can be found [here](out/figure5.pdf),
 and Figure 6,
 
     >>> from src.plot_noise_removal import plot_Chat_vs_C
@@ -233,16 +215,7 @@ and Figure 6,
     ... )
     ...
 
-which looks like
-
-<p align="center"> 
-    <img 
-        src="out/figure6.pdf" 
-        width="250"
-    />
-</p>
-
-
+which can be found [here](out/figure6.pdf),
 and Figure 7,
 
     >>> from src.plot_noise_removal import plot_figure7
@@ -253,14 +226,8 @@ and Figure 7,
     ... )
     ...
 
-which looks like
+which can be found [here](out/figure7.pdf).
 
-<p align="center"> 
-    <img 
-        src="out/figure7.pdf" 
-        width="250"
-    />
-</p>
 
 ## Parameter Extraction
 
@@ -283,14 +250,7 @@ we can readily plot the Figure 8 as
     ... )
     ...
 
-which looks like
-
-<p align="center"> 
-    <img 
-        src="out/figure8.pdf" 
-        width="250"
-    />
-</p>
+which looks like [this](out/figure8.pdf).
 
 The association constant is calculated as
 
@@ -308,16 +268,7 @@ We plot Figure 9 via
     dh_DS average over all temperatures is -35.4 +/- 5.3 kJ/mol
     Tds_DS average over all temperatures is -8.4 +/- 5.2 kJ/mol
 
-
-
-which looks like
-
-<p align="center"> 
-    <img 
-        src="out/figure9.pdf" 
-        width="250"
-    />
-</p>
+which looks like [this](out/figure9.pdf).
 
 
 ## Supplementary Figures
