@@ -78,7 +78,7 @@ def make_figure_S1():
     cax.set_ylim([ticks[0], ticks[-1]])
 
     fig.subplots_adjust(bottom=0.18, left=0.2, right=0.99, top=0.98, wspace=0.01, hspace=0.01)
-    fig.savefig(figure_name_to_abspath("figureS1.jpg"), transparent=True, dpi=300)
+    fig.savefig(figure_name_to_abspath("figureS1.pdf"), transparent=True, dpi=300)
 
 def make_figure_S3():
     """Makes Figure SX."""
@@ -135,7 +135,7 @@ def make_figure_S3():
     cax.set_ylim([ticks[0], ticks[-1]])
 
     fig.subplots_adjust(bottom=0.17, left=0.18, right=0.82, top=0.97, wspace=0.01, hspace=0.01)
-    fig.savefig(figure_name_to_abspath("figureS3.jpg"), transparent=True, dpi=300)
+    fig.savefig(figure_name_to_abspath("figureS3.pdf"), transparent=True, dpi=300)
 
 
 def make_figure_2(
@@ -250,6 +250,6 @@ def make_figure_2(
 
     figs.subplots_adjust(bottom=0.12, left=0.12, right=0.99, top=0.99, wspace=0.05, hspace=0.05)
     figs.savefig(
-        figure_name_to_abspath("figure2.jpg"), 
+        figure_name_to_abspath("figure2.pdf"), 
         transparent=True, dpi=300
         )

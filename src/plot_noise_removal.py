@@ -221,5 +221,5 @@ def plot_figure7(
         ax.set_ylim([0.1, 1.0])
 
     fig.subplots_adjust(left=0.18, bottom=0.20, right=0.99, top=0.97, hspace=0., wspace=0.03)
-    fig.savefig(figure_name_to_abspath("figure7.jpg"), transparent=True, dpi=300)
+    fig.savefig(figure_name_to_abspath("figure7.pdf"), transparent=True, dpi=300)
     plt.close(fig)

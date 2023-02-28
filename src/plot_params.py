@@ -53,7 +53,7 @@ def plot_figure8(
     ax_f.set_xlabel(r"$T_j$ [K]")
 
     fig.subplots_adjust(left=0.17, hspace=0.06, bottom=0.08)
-    fig.savefig(figure_name_to_abspath("figure8.jpg"), transparent=True, dpi=300)
+    fig.savefig(figure_name_to_abspath("figure8.pdf"), transparent=True, dpi=300)
 
 
 def plot_figure9(SS: Parameters, DS: Parameters):
@@ -117,7 +117,7 @@ def plot_figure9(SS: Parameters, DS: Parameters):
     ax.set_xlim([DS.T.min(), DS.T.max()])
 
     fig.subplots_adjust(right=0.99, left=0.16, bottom=0.13, top=0.98, hspace=0.0, wspace=0.0)
-    fig.savefig(figure_name_to_abspath("figure9.jpg"), transparent=True, dpi=300)
+    fig.savefig(figure_name_to_abspath("figure9.pdf"), transparent=True, dpi=300)
 
 
 def plot_figure_S2(SS_1: CombinedData, SS_2: CombinedData, DS_1: CombinedData, DS_2: CombinedData):
@@ -153,7 +153,7 @@ def plot_figure_S2(SS_1: CombinedData, SS_2: CombinedData, DS_1: CombinedData, D
     axes[1, 0].set_xlabel(r"$\rho^2$")
     axes[1, 1].set_xlabel(r"$\rho^2$")
     fig.subplots_adjust(right=0.99, left=0.08, hspace=0.05, wspace=0.2, top=0.99, bottom=0.1)
-    fig.savefig(figure_name_to_abspath("figureS2.jpg"), transparent=True, dpi=300)
+    fig.savefig(figure_name_to_abspath("figureS2.pdf"), transparent=True, dpi=300)
 
 
 def plot_figure_S4(SS_data: Parameters, DS_data: Parameters):
@@ -166,7 +166,7 @@ def plot_figure_S4(SS_data: Parameters, DS_data: Parameters):
     ax.set_ylabel("$\\theta_{b,j,1}$", rotation=0, labelpad=12)
 
     fig.subplots_adjust(right=0.98, bottom=0.10, left=0.15, top=0.99)
-    fig.savefig(figure_name_to_abspath("figureS4.jpg"), dpi=300, transparent=True)
+    fig.savefig(figure_name_to_abspath("figureS4.pdf"), dpi=300, transparent=True)
 
 
 def plot_figure_S5(T, rb, d_rb):
@@ -192,6 +192,6 @@ def plot_figure_S5(T, rb, d_rb):
     axbr.spines['top'].set_visible(False)
     axbr.spines['right'].set_visible(False)
     figbr.savefig(
-        figure_name_to_abspath("figureS5.jpg"), 
+        figure_name_to_abspath("figureS5.pdf"), 
         dpi=300, transparent=True
     )
