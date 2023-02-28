@@ -61,10 +61,7 @@ Having read-in the raw data, we plot it via
 which looks like
 
 <p align="center"> 
-    <img 
-        src="out/figure2.pdf" 
-        width="250"
-    />
+    <iframe src="out/figure2" style="width:600px; height:500px;" frameborder="0"></iframe>
 </p>
 
 We combine the replicate plates by storing them as a
