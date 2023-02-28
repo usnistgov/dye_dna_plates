@@ -58,10 +58,9 @@ Having read-in the raw data, we plot it via
     >>> from src.plot_raw_data import make_figure_2
     >>> make_figure_2(SS_A_1, SS_B_1, SS_C_1, SS_A_2, SS_B_2, DS_A_1, DS_B_1, DS_A_2, DS_B_2, A_1)
 
-which looks like
 
 <p align="center"> 
-    <iframe src="out/figure2" style="width:600px; height:500px;" frameborder="0"></iframe>
+    <iframe src="out/figure2.pdf" style="width:600px; height:500px;" frameborder="0"></iframe>
 </p>
 
 We combine the replicate plates by storing them as a
