@@ -376,7 +376,7 @@ Trying:
         (SS_1.F, SS_2.F, DS_1.F, DS_2.F), 
         tuple(F_hats),
         (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
-        "figure4.png", 
+        "figure4.jpg", 
         sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{LS}$")
 Expecting nothing
 ok
@@ -420,7 +420,7 @@ Trying:
         (SS_1.F, SS_2.F, DS_1.F, DS_2.F),
         (SS_1.Fhat_tls, SS_2.Fhat_tls, DS_1.Fhat_tls, DS_2.Fhat_tls),
         (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
-        "figure5.png", 
+        "figure5.jpg", 
         sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{TLS}$")
 Expecting nothing
 ok
@@ -433,7 +433,7 @@ Trying:
         (SS_1.C, SS_2.C, DS_1.C, DS_2.C), 
         (SS_1.C_hat, SS_2.C_hat, DS_1.C_hat, DS_2.C_hat), 
         (SS_1.C_std, SS_2.C_std, DS_1.C_std, DS_2.C_std), 
-        "figure6.png"
+        "figure6.jpg"
     )
 Expecting nothing
 ok

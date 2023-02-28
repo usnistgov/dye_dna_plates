@@ -62,7 +62,7 @@ which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure2.png" 
+        src="out/figure2.jpg" 
         width="250"
     />
 </p>
@@ -160,7 +160,7 @@ each combination via
     ...     (SS_1.F, SS_2.F, DS_1.F, DS_2.F), 
     ...     tuple(F_hats),
     ...     (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
-    ...     "figure4.png", 
+    ...     "figure4.jpg", 
     ...     sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{LS}$")
     ...
 
@@ -168,7 +168,7 @@ This is Figure 4 in the main text, which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure4.png" 
+        src="out/figure4.jpg" 
         width="250"
     />
 </p>
@@ -213,7 +213,7 @@ The results are plotted via Figure 5
     ...     (SS_1.F, SS_2.F, DS_1.F, DS_2.F),
     ...     (SS_1.Fhat_tls, SS_2.Fhat_tls, DS_1.Fhat_tls, DS_2.Fhat_tls),
     ...     (SS_1.T, SS_2.T, DS_1.T, DS_2.T), 
-    ...     "figure5.png", 
+    ...     "figure5.jpg", 
     ...     sname=r"$\widehat{\mathbf{F}}_{j,i}^\mathrm{TLS}$")
     ...
 
@@ -221,7 +221,7 @@ which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure5.png" 
+        src="out/figure5.jpg" 
         width="250"
     />
 </p>
@@ -233,7 +233,7 @@ and Figure 6,
     ...     (SS_1.C, SS_2.C, DS_1.C, DS_2.C), 
     ...     (SS_1.C_hat, SS_2.C_hat, DS_1.C_hat, DS_2.C_hat), 
     ...     (SS_1.C_std, SS_2.C_std, DS_1.C_std, DS_2.C_std), 
-    ...     "figure6.png"
+    ...     "figure6.jpg"
     ... )
     ...
 
@@ -241,7 +241,7 @@ which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure6.png" 
+        src="out/figure6.jpg" 
         width="250"
     />
 </p>
@@ -261,7 +261,7 @@ which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure7.png" 
+        src="out/figure7.jpg" 
         width="250"
     />
 </p>
@@ -291,7 +291,7 @@ which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure8.png" 
+        src="out/figure8.jpg" 
         width="250"
     />
 </p>
@@ -318,7 +318,7 @@ which looks like
 
 <p align="center"> 
     <img 
-        src="out/figure9.png" 
+        src="out/figure9.jpg" 
         width="250"
     />
 </p>
