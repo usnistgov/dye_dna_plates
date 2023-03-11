@@ -155,25 +155,25 @@ def make_figure_2(
     Parameters
     ----------
     SS_A_1 : RawData
-        Data associated with :math:`(t,\\ell,d)=(SS,A,1)` (see Table 1 of main text)
+        Data associated with :math:`(t,l,d)=(SS,A,1)` (see Table 1 of main text)
     SS_B_1 : RawData
-        Data associated with :math:`(t,\\ell,d)=(SS,B,1)` (see Table 1 of main text)
+        Data associated with :math:`(t,l,d)=(SS,B,1)` (see Table 1 of main text)
     SS_C_1 : RawData
-        Data associated with :math:`(t,\\ell,d)=(SS,C,1)` (see Table 1 of main text)
+        Data associated with :math:`(t,l,d)=(SS,C,1)` (see Table 1 of main text)
     SS_A_2 : RawData
-        Data associated with :math:`(t,\\ell,d)=(SS,A,2)` (see Table 1 of main text)
+        Data associated with :math:`(t,l,d)=(SS,A,2)` (see Table 1 of main text)
     SS_B_2 : RawData
-        Data associated with :math:`(t,\\ell,d)=(SS,B,2)` (see Table 1 of main text)
+        Data associated with :math:`(t,l,d)=(SS,B,2)` (see Table 1 of main text)
     DS_A_1 : RawData
-        Data associated with :math:`(t,\\ell,d)=(DS,A,1)` (see Table 1 of main text)
+        Data associated with :math:`(t,l,d)=(DS,A,1)` (see Table 1 of main text)
     DS_B_1 : RawData
-        Data associated with :math:`(t,\\ell,d)=(DS,B,1)` (see Table 1 of main text)
+        Data associated with :math:`(t,l,d)=(DS,B,1)` (see Table 1 of main text)
     DS_A_2 : RawData
-        Data associated with :math:`(t,\\ell,d)=(DS,A,2)` (see Table 1 of main text)
+        Data associated with :math:`(t,l,d)=(DS,A,2)` (see Table 1 of main text)
     DS_B_2 : RawData
-        Data associated with :math:`(t,\\ell,d)=(DS,B,2)` (see Table 1 of main text)
+        Data associated with :math:`(t,l,d)=(DS,B,2)` (see Table 1 of main text)
     A_1 : RawData
-        Data associated with :math:`(\\ell,d)=(A,1)` (without DNA, see Table 1 of main text)
+        Data associated with :math:`(l,d)=(A,1)` (without DNA, see Table 1 of main text)
 
 
     """
@@ -182,13 +182,13 @@ def make_figure_2(
     figs, axes = plt.subplots(ncols=3, nrows=4, sharex=True, sharey=True, figsize=(3.25, 5.0))
     label_kwargs = dict(labelpad=0)
 
-    axes[0, 0].annotate("$\\ell = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
-    axes[0, 0].set_ylabel(r"$F_{i,j,1}^{\mathrm{SS},\ell}\times 10^{-6}$", **label_kwargs)
-    axes[0, 1].annotate("$\\ell =\\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
-    axes[1, 0].set_ylabel(r"$F_{i,j,2}^{\mathrm{SS},\ell}\times 10^{-6}$", **label_kwargs)
-    axes[0, 2].annotate("$\\ell = \\mathrm{C}$", xy=(0.05, 0.9), xycoords='axes fraction')
-    axes[2, 0].set_ylabel(r"$F_{i,j,1}^{\mathrm{DS},\ell}\times 10^{-6}$", **label_kwargs)
-    axes[3, 0].set_ylabel(r"$F_{i,j,2}^{\mathrm{DS},\ell}\times 10^{-6}$", **label_kwargs)
+    axes[0, 0].annotate("$l = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[0, 0].set_ylabel(r"$F_{i,j,1}^{\mathrm{SS},l}\times 10^{-6}$", **label_kwargs)
+    axes[0, 1].annotate("$l =\\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[1, 0].set_ylabel(r"$F_{i,j,2}^{\mathrm{SS},l}\times 10^{-6}$", **label_kwargs)
+    axes[0, 2].annotate("$l = \\mathrm{C}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[2, 0].set_ylabel(r"$F_{i,j,1}^{\mathrm{DS},l}\times 10^{-6}$", **label_kwargs)
+    axes[3, 0].set_ylabel(r"$F_{i,j,2}^{\mathrm{DS},l}\times 10^{-6}$", **label_kwargs)
 
     for irow in range(axes.shape[0]):
         for icol in range(axes.shape[1]):
@@ -200,9 +200,9 @@ def make_figure_2(
     plot_linemap(SS_B_1, axes[0, 1])
     plot_linemap(SS_C_1, axes[0, 2])
     plot_linemap(SS_A_2, axes[1, 0])
-    axes[1, 0].annotate("$\\ell = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[1, 0].annotate("$l = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
     plot_linemap(SS_B_2, axes[1, 1])
-    axes[1, 1].annotate("$\\ell = \\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[1, 1].annotate("$l = \\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
 
     for i in ((2, 2), (1, 2), (3, 2)):
         for kk in ('left', 'right', 'top', 'bottom'):
@@ -219,18 +219,18 @@ def make_figure_2(
     axes[0, 2].set_xlabel(concentration_label)
 
     plot_linemap(DS_A_1, axes[2, 0])
-    axes[2, 0].annotate("$\\ell = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[2, 0].annotate("$l = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
     plot_linemap(DS_B_1, axes[2, 1])
-    axes[2, 1].annotate("$\\ell = \\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[2, 1].annotate("$l = \\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
     plot_linemap(DS_A_2, axes[3, 0])
-    axes[3, 0].annotate("$\\ell = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[3, 0].annotate("$l = \\mathrm{A}$", xy=(0.05, 0.9), xycoords='axes fraction')
     plot_linemap(DS_B_2, axes[3, 1])
-    axes[3, 1].annotate("$\\ell = \\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
+    axes[3, 1].annotate("$l = \\mathrm{B}$", xy=(0.05, 0.9), xycoords='axes fraction')
 
     ax_nodna = figs.add_axes([0.8, 0.2, 0.2, 0.2])
     c = 'blueviolet'
     # ax_nodna = axes[3, 2]
-    ax_nodna.annotate("$\\ell = \\mathrm{A}$", xy=(0.05, 1.02), xycoords='axes fraction', color=c)
+    ax_nodna.annotate("$l = \\mathrm{A}$", xy=(0.05, 1.02), xycoords='axes fraction', color=c)
     # ax_nodna.spines['left'].set_visible(False)
     # plt.setp(ax_nodna.get_xticklabels(), visible=True)
     ax_nodna.tick_params(labelbottom=True)
