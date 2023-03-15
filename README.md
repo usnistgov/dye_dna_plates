@@ -39,6 +39,6 @@ To cite the software and experimental data, use Ref. [2].
 
 ## References
 
-  1. DeJaco, R. F.; Majikes, J. M.; Liddle, J. A.; Kearsley, A. J. Binding, Brightness, or Noise? Extracting Temperature-dependent Properties of Dye Bound to DNA. *Under Review*, 2023.
+  1. DeJaco, R. F.; Majikes, J. M.; Liddle, J. A.; Kearsley, A. J. Binding, Brightness, or Noise? Extracting Temperature-dependent Properties of Dye Bound to DNA. *Biophysical Journal*, 2023, [doi: 10.1016/j.bpj.2023.03.002](https://doi.org/10.1016/j.bpj.2023.03.002).
 
-  2. DeJaco, R. F. Software and Data associated with *Binding, Brightness, or Noise? Extracting Temperature-dependent Properties of Dye Bound to DNA*, National Institute of Standards and Technology, 2023, https://doi.org/10.18434/mds2-2762.
+  2. DeJaco, R. F. Software and Data associated with *Binding, Brightness, or Noise? Extracting Temperature-dependent Properties of Dye Bound to DNA*, National Institute of Standards and Technology, 2023, [doi: 10.18434/mds2-2762](https://doi.org/10.18434/mds2-2762).
