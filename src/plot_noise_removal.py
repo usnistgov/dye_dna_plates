@@ -83,7 +83,7 @@ def plot_error_C(ax, C, Chat, Chat_std=None, **kwargs):
 
 def plot_Chat_vs_C(Cs, C_hats, C_stds, fname):
     """Plot comparison between :math:`\\mathbf{C}` and :math:`\\widehat{\\mathbf{C}}`.
-    Used to plot figure 5
+    Used to plot Fig. 6
 
     Parameters
     ----------

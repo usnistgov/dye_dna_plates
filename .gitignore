@@ -10,3 +10,6 @@ archive/
 # python
 __pycache__
 venv*
+
+#pycharm
+.idea/

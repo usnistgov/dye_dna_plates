@@ -17,6 +17,7 @@ def calculate_relative_brightness(f_SS, f_DS):
     -------
     np.array
         Relative brightness, :math:`\\mathbf{f}^\\mathrm{DS}_j/\\mathbf{f}^\\mathrm{SS}_j` for each :math:`j` associated with SS.
+        (see Eq. 24).
 
     """
     m = f_SS.shape[0]
@@ -24,7 +25,7 @@ def calculate_relative_brightness(f_SS, f_DS):
 
 
 def calculate_relative_brightness_err(SS_M1, SS_M2, DS_M1, DS_M2, SS_V_M1, SS_V_M2, DS_V_M1, DS_V_M2) -> np.array:
-    """Estimate error in relative brightness, Equation (24).
+    """Estimate error in relative brightness (Eq. 24).
 
     Parameters
     ----------
@@ -78,6 +79,11 @@ def calculate_relative_brightness_err(SS_M1, SS_M2, DS_M1, DS_M2, SS_V_M1, SS_V_
 
 class Parameters:
     """Stores multiple instances of CombinedData for one DNA type
+
+    Notes
+    -----
+    :math:`\\mathbf{M}^\\mathrm{TLS}` and :math:`\\widehat{\\mathbf{C}}`
+    are defined in Eq. 18a.
     
     Attributes
     ----------
@@ -101,7 +107,7 @@ class Parameters:
     V_M1 : np.array
         :math:`V(\\mathbf{M})` associated with :math:`\\mathbf{D}=1`
     V_M2 : np.array
-        :math:`V(mathbf{M})` associated with :math:`\\mathbf{D}=2`. 
+        :math:`V(\\mathbf{M})` associated with :math:`\\mathbf{D}=2`.
         Several high temperatures are removed to reflect smaller temperature range associated with :math:`\\mathbf{D}=1`
     dT : float
         Change in temperature from one cycle to next, :math:`\\Delta T`
@@ -146,7 +152,7 @@ class Parameters:
         assert self.N == cls2.N, "Cannot combine different DNA lengths"
 
     def get_K(self) -> np.array:
-        """Get :math:`\\mathbf{K}` from vectorized version of Equation (21)
+        """Get :math:`\\mathbf{K}` from vectorized version of Eq. 21.
 
         Returns
         -------
@@ -178,7 +184,7 @@ class Parameters:
         return np.sqrt((DM*DM*(4*self.V_M1+ 2*self.V_M2) + DH*DH*(self.V_M1+ self.V_M2))/8/DM/DM/DM/DM)
     
     def get_f(self) -> np.array:
-        """Get :math:`\\mathbf{f}` from vectorized version of Equation (23)
+        """Get :math:`\\mathbf{f}` from vectorized version of Eq. 23.
 
         Returns
         -------
@@ -228,7 +234,7 @@ class Parameters:
         )
     
     def get_dg(self) -> np.array:
-        """Get free energy of dye binding, :math:`\\Delta g`, vectorized version of Equation (25).
+        """Get free energy of dye binding, :math:`\\Delta g`, vectorized version of Eq. 25.
 
         Returns
         -------
@@ -239,7 +245,7 @@ class Parameters:
         return -R_kJ_molK * self.T * np.log(K/C_REF/self.N)
     
     def get_dh(self) -> np.array:
-        """Get differential enthalpy of binding, :math:`\\Delta h` as the vectorized version of Equation (26).
+        """Get differential enthalpy of binding, :math:`\\Delta h` as the vectorized version of Eq. 26.
 
         Returns
         -------
@@ -297,7 +303,7 @@ class Parameters:
         )
 
     def get_theta_b_all_1(self, n):
-        """Returns :math:`\\theta_{b,j,1}` in Equation (S6a) pointwise in :math:`j`
+        """Returns :math:`\\theta_{b,j,1}` from Eq. S5 pointwise in :math:`j`
         The index :math:`b` is the total number of wells.
 
         Returns

@@ -7,7 +7,8 @@ def plot_linemap(
     cls: RawData,
     ax, colorbar=False, get_ticks=False, ordered_by_row=True
     ):
-    """Plot F vs C for various temperatures (colors)
+    """Plot :math:`F_d^t\\left(T_j, C_i\\right)` vs :math:`C_i`
+    for various temperatures :math:`T_j` (colors)
 
     Parameters
     ----------

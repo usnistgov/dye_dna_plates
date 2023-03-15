@@ -7,7 +7,7 @@ def compute_M_LS(F, C):
     Returns
     -------
     np.array
-        :math:`\\mathbf{M}^\\mathrm{LS}`, see Equation (17)
+        :math:`\\mathbf{M}^\\mathrm{LS}`, see Eq. 17.
 
     """
     return F@C/np.inner(C, C)
@@ -30,7 +30,7 @@ def compute_c_plus(F, C, M_minus, rho_squared):
     Returns
     -------
     np.ndarray
-        :math:`\\mathbf{c}_+` by Equation (S3a)
+        :math:`\\mathbf{c}_+` by Eq. S3a (see supporting material).
     """
     return (C*rho_squared + F.T@M_minus)/(rho_squared + np.inner(M_minus, M_minus))
 
@@ -48,13 +48,13 @@ def compute_M_plus(F, c_plus):
     Returns
     -------
     np.array 
-        :math:`\\mathbf{M}_{+}` by Equation (S3b)
+        :math:`\\mathbf{M}_{+}` by Eq. S3b (see supporting material).
     """
     return F@c_plus/np.inner(c_plus, c_plus)
 
 
 def predictor_corrector(F, C, rho_squared, maxiter=100000, print_iter=True):
-    """Solve Equation (18) with predictor--corrector algorithm
+    """Solve Eqs. 18 with predictor--corrector algorithm
 
     Parameters
     ----------

@@ -47,20 +47,29 @@ def get_C(file_name):
     Parameters
     ----------
     file_name : str
-        CSV file formatted like a 96-well plate. The top left corner looks like
+        CSV file containing values of
+        concentrations of dye in units of :math:`\\mu` mol/L.
+        Formatted like a 96-well plate:
 
-        +-----+---+---+
-        |  Row| 1 | 2 |
-        +=====+===+===+
-        | A   | . | . |
-        +-----+---+---+
-        | B   | . | . |
-        +-----+---+---+
-        | C   | . | . |
-        +-----+---+---+
-
-        The values are concentrations of dye in units of mol/L
-
+        +-----+---+---+---+---+---+---+---+---+---+---+---+---+
+        |  Row| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12|
+        +=====+===+===+===+===+===+===+===+===+===+===+===+===+
+        | A   | . | . | . | . | . | . | . | . | . | . | . | . |
+        +-----+---+---+---+---+---+---+---+---+---+---+---+---+
+        | B   | . | . | . | . | . | . | . | . | . | . | . | . |
+        +-----+---+---+---+---+---+---+---+---+---+---+---+---+
+        | C   | . | . | . | . | . | . | . | . | . | . | . | . |
+        +-----+---+---+---+---+---+---+---+---+---+---+---+---+
+        | D   | . | . | . | . | . | . | . | . | . | . | . | . |
+        +-----+---+---+---+---+---+---+---+---+---+---+---+---+
+        | E   | . | . | . | . | . | . | . | . | . | . | . | . |
+        +-----+---+---+---+---+---+---+---+---+---+---+---+---+
+        | F   | . | . | . | . | . | . | . | . | . | . | . | . |
+        +-----+---+---+---+---+---+---+---+---+---+---+---+---+
+        | G   | . | . | . | . | . | . | . | . | . | . | . | . |
+        +-----+---+---+---+---+---+---+---+---+---+---+---+---+
+        | H   | . | . | . | . | . | . | . | . | . | . | . | . |
+        +-----+---+---+---+---+---+---+---+---+---+---+---+---+
 
 
     Returns
@@ -84,15 +93,15 @@ class RawData:
     Attributes
     ----------
     F : np.ndarray
-        Fluorescence data, :math:`F_d^{t\\ell}` (see Equation 11 of main text)
+        Fluorescence data, :math:`F_d^{t,l}` (see Eq. 11)
     C : np.ndarray
-        Dye concentrations, :math:`C` (see Equation 10 of main text)
+        Dye concentrations, :math:`C` (see Eq. 10)
     B : float
         DNA concentration, :math:`B_d` in mol/L
     t : str
         Type of DNA, :math:`t`, :code:`"SS"` or :code:`"DS"` or :code:`"None"`.
     l : str
-        Replicate name, :math:`\\ell` is A, B, or C
+        Replicate name, :math:`l` is :code:`"A"`, :code:`"B"`, or code:`"C"`.
     N : int
         number of nucleobases per single strand
 
@@ -140,32 +149,32 @@ class CombinedData:
     Attributes
     ----------
     F : np.ndarray
-        Fluorescence data, :math:`\\mathbf{F}_{\\mathbf{D}}^t` in Equation (16a)
+        Fluorescence data, :math:`\\mathbf{F}_{\\mathbf{D}}^t` in Equation (13a)
     C : np.ndarray
-        Dye concentrations, :math:`\\mathbf{C}_{\\mathbf{D}}^t` in Equation (16a)
+        Dye concentrations, :math:`\\mathbf{C}_{\\mathbf{D}}^t` in Equation (13a)
     D : float
-        DNA concentration, :math:`\\mathbf{D}` in Equation (16a)
+        DNA concentration, :math:`\\mathbf{D}` in Equation (13a)
     t : str
         Type of DNA, :math:`t`, :code:`"SS"` or :code:`"DS"`
     N : int
         number of nucleobases per single strand, :math:`N`
     M_tls : np.array
-        :math:`\\mathbf{M}^\\mathrm{TLS}`, set externally, defaults to np.array([])
+        :math:`\\mathbf{M}^\\mathrm{TLS}` in Equation (18a), set externally, defaults to np.array([])
     C_hat : np.array
-        :math:`\\widehat{\\mathbf{C}}`, set externally, defaults to np.array([])
+        :math:`\\widehat{\\mathbf{C}}` in Equation (18a), set externally, defaults to np.array([])
     V_M : np.array
-        :math:`V(\\mathbf{M})` (see Section S1.2), defaults to np.array([])
+        :math:`V(\\mathbf{M})` (see section S1.3 in supporting material), defaults to np.array([])
     V_C : np.array
-        :math:`V(\\mathbf{C})` (see Section S1.2), defaults to np.array([])
+        :math:`V(\\mathbf{C})` (see section S1.3 in supporting material), defaults to np.array([])
     M_std : np.array
-        :math:`\\sqrt{V(\\mathbf{M})}` (see Section S1.2), defaults to np.array([])
+        :math:`\\sqrt{V(\\mathbf{M})}`, defaults to np.array([])
     C_std : np.array
-        :math:`\\sqrt{V(\\mathbf{C})}` (see Section S1.2), defaults to np.array([])
+        :math:`\\sqrt{V(\\mathbf{C})}`, defaults to np.array([])
 
 
     """
     def __init__(self, *replicates: typing.Tuple[RawData]) -> None:
-        """Combine replicate :math:`F` and :math:`C`
+        """Combine replicate :math:`F_d^{t,l}` and :math:`C`
 
         Parameters
         ----------
@@ -227,7 +236,7 @@ class CombinedData:
             self.C = self.C[wells]
         
         i_T = 0
-        while (np.mean(self.F[i_T, :]) < F_min):
+        while np.mean(self.F[i_T, :]) < F_min:
             i_T += 1
         
         self.F = self.F[i_T:, :]
